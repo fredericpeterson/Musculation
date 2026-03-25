@@ -3,624 +3,516 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Programme Hypertrophie 3J/Semaine</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Programme Hypertrophie \u2014 Halt\u00e8res & Machines</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --surface2: #1a1a26;
-    --border: #252535;
-    --accent: #e8ff47;
-    --accent2: #47c8ff;
-    --accent3: #ff6b47;
-    --text: #e8e8f0;
-    --text-muted: #6b6b88;
-    --text-dim: #3a3a55;
-    --s1: #ff6b47;
-    --s2: #47c8ff;
-    --s3: #a847ff;
+    --bg: #f5f2ed;
+    --surface: #ffffff;
+    --surface2: #ede9e3;
+    --border: #ddd9d2;
+    --ink: #1a1814;
+    --ink-muted: #8a8680;
+    --ink-dim: #c8c4bc;
+    --gold: #c8963c;
+    --gold-light: #f5e8d0;
+    --s1: #2d6a4f;
+    --s2: #1d4e89;
+    --s3: #7b2d8b;
+    --s1-light: #d8f3dc;
+    --s2-light: #dbeafe;
+    --s3-light: #f3e8ff;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
     font-weight: 300;
     line-height: 1.6;
-    overflow-x: hidden;
   }
 
   /* HERO */
   .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 60px 24px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 24px 72px;
     position: relative;
     overflow: hidden;
   }
 
-  .hero::before {
-    content: '';
+  .hero::after {
+    content: 'H';
     position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(232,255,71,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 60%, rgba(71,200,255,0.05) 0%, transparent 60%);
+    right: -20px;
+    top: -40px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 400px;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
     pointer-events: none;
   }
 
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.2s;
+    color: var(--gold);
+    margin-bottom: 20px;
   }
 
   .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(64px, 12vw, 160px);
-    line-height: 0.9;
-    letter-spacing: -0.02em;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(44px, 8vw, 100px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
     margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.7s ease forwards 0.4s;
   }
 
-  .hero h1 span { color: var(--accent); }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
 
-  .hero-sub {
-    font-size: 16px;
-    color: var(--text-muted);
-    max-width: 480px;
+  .hero-desc {
+    font-size: 15px;
+    color: rgba(245,242,237,0.55);
+    max-width: 520px;
     margin-bottom: 48px;
-    opacity: 0;
-    animation: fadeUp 0.7s ease forwards 0.6s;
+    line-height: 1.7;
   }
 
-  .hero-stats {
+  .hero-pills {
     display: flex;
-    gap: 48px;
     flex-wrap: wrap;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeUp 0.7s ease forwards 0.8s;
+    gap: 8px;
   }
 
-  .stat {
-    display: flex;
-    flex-direction: column;
+  .pill {
+    display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(245,242,237,0.6);
+    letter-spacing: 0.05em;
   }
 
-  .stat-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 1.2s;
-  }
-
-  .scroll-hint span {
-    display: block;
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    margin: 0 auto;
-    animation: scrollLine 1.5s ease-in-out infinite;
-  }
-
-  @keyframes scrollLine {
-    0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
-    50% { opacity: 1; transform: scaleY(1); }
-    100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+  .pill .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
   }
 
   /* LAYOUT */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-  /* SECTION HEADER */
-  .section-header {
-    padding: 80px 0 40px;
-  }
-
-  .section-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(40px, 6vw, 72px);
-    line-height: 1;
-    letter-spacing: -0.01em;
-  }
-
-  /* SESSION TABS */
-  .session-nav {
+  /* NAV */
+  .sessions-nav {
     display: flex;
-    gap: 4px;
-    margin-bottom: 40px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 6px;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 48px;
     overflow-x: auto;
   }
 
-  .session-tab {
-    flex: 1;
-    min-width: 120px;
-    padding: 14px 20px;
+  .s-tab {
+    padding: 16px 28px;
     background: transparent;
     border: none;
-    border-radius: 8px;
-    color: var(--text-muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
     cursor: pointer;
-    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
     white-space: nowrap;
-    text-align: center;
+    transition: all 0.2s;
   }
 
-  .session-tab.active {
-    background: var(--border);
-    color: var(--text);
+  .s-tab:hover { color: var(--ink); }
+
+  .s-tab.active[data-s="1"] { color: var(--s1); border-bottom-color: var(--s1); }
+  .s-tab.active[data-s="2"] { color: var(--s2); border-bottom-color: var(--s2); }
+  .s-tab.active[data-s="3"] { color: var(--s3); border-bottom-color: var(--s3); }
+
+  /* SECTION TITLES */
+  .sec-wrap { padding: 64px 0 0; }
+
+  .sec-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
   }
 
-  .session-tab[data-day="1"].active { color: var(--s1); }
-  .session-tab[data-day="2"].active { color: var(--s2); }
-  .session-tab[data-day="3"].active { color: var(--s3); }
+  .sec-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 56px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 40px;
+  }
 
-  /* SESSION CONTENT */
+  /* SESSION META */
   .session-panel { display: none; }
   .session-panel.active { display: block; }
 
-  .session-meta {
+  .s-meta {
     display: flex;
-    gap: 16px;
+    gap: 10px;
     flex-wrap: wrap;
     margin-bottom: 32px;
   }
 
-  .meta-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-family: 'DM Mono', monospace;
+  .s-badge {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.05em;
   }
 
-  .meta-badge .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
+  .s1 .s-badge { background: var(--s1-light); color: var(--s1); }
+  .s2 .s-badge { background: var(--s2-light); color: var(--s2); }
+  .s3 .s-badge { background: var(--s3-light); color: var(--s3); }
 
-  /* EXERCISE CARD */
-  .exercises-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    margin-bottom: 80px;
-  }
+  /* EXERCISE TABLE */
+  .ex-list { display: flex; flex-direction: column; gap: 3px; margin-bottom: 72px; }
 
-  .exercise-card {
+  .ex-row {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 3px;
     overflow: hidden;
-    transition: border-color 0.2s ease;
+    transition: box-shadow 0.2s;
   }
 
-  .exercise-card:hover { border-color: var(--text-dim); }
+  .ex-row:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
 
-  .exercise-header {
+  .ex-top {
     display: grid;
-    grid-template-columns: 56px 1fr auto;
+    grid-template-columns: 48px 1fr auto 28px;
     align-items: center;
-    gap: 20px;
-    padding: 20px 24px;
+    gap: 16px;
+    padding: 18px 20px;
     cursor: pointer;
-    user-select: none;
   }
 
-  .ex-number {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    color: var(--text-dim);
-    line-height: 1;
+  .ex-idx {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    font-weight: 500;
   }
 
-  .ex-main {}
-
+  .ex-info {}
   .ex-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.02em;
-    line-height: 1;
-    margin-bottom: 4px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
   }
 
-  .ex-target {
-    font-family: 'DM Mono', monospace;
+  .ex-muscle {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .ex-params {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .param {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
-
-  .param-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    line-height: 1;
-    color: var(--text);
-  }
-
-  .param-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--ink-muted);
   }
 
-  .ex-chevron {
-    width: 20px;
-    height: 20px;
-    color: var(--text-dim);
-    transition: transform 0.25s ease;
-    flex-shrink: 0;
+  .ex-specs {
+    display: flex;
+    gap: 24px;
   }
 
-  .exercise-card.open .ex-chevron { transform: rotate(180deg); }
+  .spec { display: flex; flex-direction: column; align-items: center; gap: 1px; }
 
-  .exercise-details {
+  .spec-v {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .spec-l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+  }
+
+  .ex-toggle {
+    color: var(--ink-dim);
+    transition: transform 0.25s;
+  }
+
+  .ex-row.open .ex-toggle { transform: rotate(180deg); }
+
+  /* COACHING PANEL */
+  .ex-coaching {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.25s ease;
+    transition: max-height 0.35s ease;
     border-top: 1px solid transparent;
   }
 
-  .exercise-card.open .exercise-details {
-    max-height: 600px;
+  .ex-row.open .ex-coaching {
+    max-height: 500px;
     border-top-color: var(--border);
   }
 
-  .details-inner {
-    padding: 24px;
+  .coaching-inner {
+    padding: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
+    background: var(--surface2);
   }
 
-  .detail-block { }
+  .c-block {}
 
-  .detail-block-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
+  .c-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .detail-block-title::before {
-    content: '';
-    display: inline-block;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-
-  .detail-block p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-
-  .intensity-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .rpe-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--accent);
-  }
-
-  .rpe-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-  }
-
-  /* RPE bar */
-  .rpe-bar-wrap { display: flex; gap: 3px; margin-top: 4px; }
-  .rpe-pip {
-    flex: 1;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--border);
-    transition: background 0.2s;
-  }
-  .rpe-pip.filled { background: var(--accent); }
-
-  /* COLOR ACCENTS PER DAY */
-  .day-1 .ex-number { color: rgba(255,107,71,0.2); }
-  .day-1 .exercise-card.open { border-color: rgba(255,107,71,0.3); }
-
-  .day-2 .ex-number { color: rgba(71,200,255,0.2); }
-  .day-2 .exercise-card.open { border-color: rgba(71,200,255,0.3); }
-
-  .day-3 .ex-number { color: rgba(168,71,255,0.2); }
-  .day-3 .exercise-card.open { border-color: rgba(168,71,255,0.3); }
-
-  /* PROGRESSION SECTION */
-  .progression-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin-bottom: 80px;
-  }
-
-  .week-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .week-card.deload {
-    border-color: rgba(232,255,71,0.2);
-    background: linear-gradient(135deg, var(--surface) 0%, rgba(232,255,71,0.03) 100%);
-  }
-
-  .week-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px;
-    color: var(--text-dim);
-    line-height: 1;
-    position: absolute;
-    right: 20px;
-    top: 12px;
-  }
-
-  .week-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
+    color: var(--gold);
     margin-bottom: 6px;
   }
 
-  .week-focus {
-    font-family: 'DM Mono', monospace;
+  .c-text {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .rpe-display {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .rpe-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .rpe-suffix {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  .rpe-track {
+    display: flex;
+    gap: 3px;
+  }
+
+  .rpe-seg {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--border);
+  }
+
+  .rpe-seg.on { background: var(--ink); }
+
+  /* SESSION COLOR ACCENT */
+  .s1 .ex-name { }
+  .s1 .ex-row.open { border-color: rgba(45,106,79,0.25); }
+  .s2 .ex-row.open { border-color: rgba(29,78,137,0.25); }
+  .s3 .ex-row.open { border-color: rgba(123,45,139,0.25); }
+
+  /* PROGRESSION */
+  .prog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-bottom: 72px;
+  }
+
+  .prog-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+  }
+
+  .prog-card:first-child { border-radius: 12px 0 0 12px; }
+  .prog-card:last-child { border-radius: 0 12px 12px 0; }
+
+  .prog-card.deload {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+
+  .prog-week {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 8px;
     text-transform: uppercase;
-    color: var(--accent);
+  }
+
+  .prog-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
     margin-bottom: 16px;
   }
 
-  .week-details {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .prog-items { display: flex; flex-direction: column; gap: 8px; }
 
-  .week-item {
+  .prog-item {
     display: flex;
-    align-items: flex-start;
     gap: 10px;
-    font-size: 13px;
-    color: var(--text-muted);
+    font-size: 12.5px;
+    line-height: 1.5;
   }
 
-  .week-item::before {
-    content: '→';
-    color: var(--accent);
-    flex-shrink: 0;
-    font-size: 12px;
-    margin-top: 2px;
-  }
+  .prog-arrow { color: var(--gold); flex-shrink: 0; font-size: 12px; }
+  .prog-card.deload .prog-item { color: rgba(245,242,237,0.7); }
 
-  /* PROTOCOL SECTIONS */
-  .protocol-grid {
+  /* PROTOCOLS */
+  .proto-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    margin-bottom: 80px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 72px;
   }
 
-  .protocol-card {
+  .proto-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 32px;
   }
 
-  .protocol-icon {
-    font-size: 32px;
-    margin-bottom: 16px;
-  }
+  .proto-ico { font-size: 28px; margin-bottom: 14px; }
 
-  .protocol-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
+  .proto-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
     margin-bottom: 20px;
-    color: var(--text);
   }
 
-  .protocol-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+  .proto-list { display: flex; flex-direction: column; gap: 12px; }
 
-  .protocol-item {
+  .proto-item {
     display: flex;
     gap: 12px;
     font-size: 13px;
-    color: var(--text-muted);
+    color: var(--ink-muted);
     line-height: 1.5;
   }
 
-  .protocol-item-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
+  .proto-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
     flex-shrink: 0;
-    margin-top: 1px;
-    width: 20px;
+    margin-top: 2px;
+    min-width: 20px;
+    font-weight: 500;
   }
 
-  /* NUTRITION TABLE */
-  .nutrition-grid {
+  /* NUTRITION */
+  .macro-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin-bottom: 80px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2px;
+    margin-bottom: 16px;
   }
 
-  .macro-card {
+  .macro-cell {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px 20px;
+    padding: 24px 20px;
     text-align: center;
   }
 
+  .macro-cell:first-child { border-radius: 10px 0 0 10px; }
+  .macro-cell:last-child { border-radius: 0 10px 10px 0; }
+
   .macro-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
     line-height: 1;
-    color: var(--accent);
-    margin-bottom: 4px;
+    color: var(--ink);
   }
 
-  .macro-unit {
-    font-size: 16px;
-    color: var(--text-muted);
-  }
+  .macro-unit { font-size: 14px; color: var(--ink-muted); }
 
   .macro-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-top: 8px;
-  }
-
-  .macro-note {
-    font-size: 11px;
-    color: var(--text-dim);
+    color: var(--ink-muted);
     margin-top: 6px;
   }
 
+  .macro-note { font-size: 11px; color: var(--ink-dim); margin-top: 4px; }
+
+  /* DIVIDER */
+  .hr { height: 1px; background: var(--border); margin: 0 0 0; }
+
   /* FOOTER */
   footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 0;
-    margin-top: 40px;
+    background: var(--ink);
+    color: rgba(245,242,237,0.4);
+    padding: 40px 24px;
     text-align: center;
+    margin-top: 80px;
   }
 
   footer p {
-    font-family: 'DM Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    color: var(--text-dim);
     letter-spacing: 0.1em;
   }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* DIVIDER */
-  .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0 0 80px;
-  }
-
-  /* RESPONSIVE */
   @media (max-width: 640px) {
-    .ex-params { gap: 12px; }
-    .param-val { font-size: 18px; }
-    .exercise-header { grid-template-columns: 40px 1fr; }
-    .ex-params { display: none; }
-    .details-inner { grid-template-columns: 1fr; }
-    .hero-stats { gap: 28px; }
-    .stat-val { font-size: 36px; }
+    .ex-specs { display: none; }
+    .ex-top { grid-template-columns: 36px 1fr 24px; }
+    .coaching-inner { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 48px; }
+    .prog-card:first-child, .prog-card:last-child { border-radius: 0; }
   }
 </style>
 </head>
@@ -628,1152 +520,696 @@
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">Programme Professionnel · Débutant → Intermédiaire</p>
-  <h1>HYPER<br><span>TROPHIE</span><br>3 JOURS</h1>
-  <p class="hero-sub">Un programme scientifique basé sur la surcharge progressive, optimisé pour la prise de masse musculaire sur 4–6 semaines.</p>
-  <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-val">3</span>
-      <span class="stat-label">Séances / sem.</span>
-    </div>
-    <div class="stat">
-      <span class="stat-val">2h</span>
-      <span class="stat-label">Par séance</span>
-    </div>
-    <div class="stat">
-      <span class="stat-val">8</span>
-      <span class="stat-label">Exercices</span>
-    </div>
-    <div class="stat">
-      <span class="stat-val">6W</span>
-      <span class="stat-label">Progression</span>
+  <div class="hero-inner">
+    <p class="hero-tag">Programme professionnel \u00b7 Halt\u00e8res & Machines \u00b7 6 semaines</p>
+    <h1>MASSE<br><em>MUSCULAIRE</em></h1>
+    <p class="hero-desc">Programme hypertrophie sur 3 s\u00e9ances/semaine, con\u00e7u exclusivement avec halt\u00e8res et machines. Surcharge progressive, coaching expert, z\u00e9ro barre libre.</p>
+    <div class="hero-pills">
+      <span class="pill"><span class="dot"></span>3 s\u00e9ances \u00d7 2h</span>
+      <span class="pill"><span class="dot"></span>8 exercices / s\u00e9ance</span>
+      <span class="pill"><span class="dot"></span>Halt\u00e8res + Machines uniquement</span>
+      <span class="pill"><span class="dot"></span>RPE 6 \u2192 9 sur 6 semaines</span>
+      <span class="pill"><span class="dot"></span>Deload semaine 6</span>
     </div>
   </div>
-  <div class="scroll-hint"><span></span></div>
 </section>
 
 <!-- SESSIONS -->
-<section>
+<section class="sec-wrap">
   <div class="container">
-    <div class="section-header">
-      <p class="section-tag">01 · Programme hebdomadaire</p>
-      <h2 class="section-title">LES 3 SÉANCES</h2>
+    <p class="sec-eyebrow">01 \u00b7 Programme hebdomadaire</p>
+    <h2 class="sec-title">Les 3 s\u00e9ances</h2>
+
+    <div class="sessions-nav">
+      <button class="s-tab active" data-s="1" onclick="showS(1)">\ud83d\udfe2 Lundi \u00b7 Pectoraux + \u00c9paules + Triceps</button>
+      <button class="s-tab" data-s="2" onclick="showS(2)">\ud83d\udd35 Mercredi \u00b7 Dos + Biceps + \u00c9paules arr.</button>
+      <button class="s-tab" data-s="3" onclick="showS(3)">\ud83d\udfe3 Vendredi \u00b7 Jambes + Fessiers + Core</button>
     </div>
 
-    <div class="session-nav">
-      <button class="session-tab active" data-day="1" onclick="showSession(1)">
-        🔴 Lundi · Push
-      </button>
-      <button class="session-tab" data-day="2" onclick="showSession(2)">
-        🔵 Mercredi · Pull
-      </button>
-      <button class="session-tab" data-day="3" onclick="showSession(3)">
-        🟣 Vendredi · Legs + Core
-      </button>
-    </div>
-
-    <!-- SESSION 1 : PUSH -->
-    <div class="session-panel active day-1" id="session-1">
-      <div class="session-meta">
-        <span class="meta-badge"><span class="dot" style="background:var(--s1)"></span>Pectoraux · Épaules · Triceps</span>
-        <span class="meta-badge"><span class="dot"></span>120 min · 8 exercices</span>
-        <span class="meta-badge"><span class="dot"></span>Volume : ~18 séries push</span>
+    <!-- SESSION 1 -->
+    <div class="session-panel s1 active" id="sp1">
+      <div class="s-meta">
+        <span class="s-badge">Pectoraux \u00b7 \u00c9paules \u00b7 Triceps</span>
+        <span class="s-badge">120 min \u00b7 8 exercices</span>
+        <span class="s-badge">~18 s\u00e9ries push</span>
       </div>
+      <div class="ex-list">
 
-      <div class="exercises-grid">
-
-        <!-- Ex 1 -->
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">01</div>
-            <div class="ex-main">
-              <div class="ex-name">Développé couché barre</div>
-              <div class="ex-target">Pectoraux · Deltoïdes antérieurs · Triceps</div>
+        <!-- 1 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Pec Deck / Pec Fly Machine</div>
+              <div class="ex-muscle">Pectoraux \u00b7 Chef sternal</div>
             </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">4</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">6–8</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'30</div><div class="param-label">Repos</div></div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">10\u201312</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
             </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div>
-                    <div class="rpe-val">7–8</div>
-                    <div class="rpe-label">RPE</div>
-                  </div>
-                  <div>
-                    <div class="rpe-bar-wrap">
-                      <div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div><div class="rpe-pip"></div>
-                    </div>
-                    <div class="rpe-label" style="margin-top:4px">~65–70% 1RM</div>
-                  </div>
-                </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">/ 10 RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Rétraction scapulaire complète avant de soulever. Coudes à 45–60° du corps, jamais perpendiculaires.</p>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">R\u00e9traction scapulaire avant de d\u00e9marrer. Coudes l\u00e9g\u00e8rement fl\u00e9chis et fixes. Descente lente (3s), retour contr\u00f4l\u00e9 \u2014 ne pas laisser les plaques se toucher pour maintenir la tension.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Décoller les fesses du banc pour charger plus lourd — détruit la tension pectorale et fragilise le bas du dos.</p>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Laisser les coudes se plier davantage en cours de mouvement \u2192 transforme l'isolation en pouss\u00e9e. La flexion du coude doit \u00eatre d\u00e9finie au d\u00e9part et ne plus bouger.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Visualise que tu "écrases" la barre entre tes deux mains plutôt que de la pousser — active immédiatement les pectoraux.</p>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Imagine que tu serres un ballon invisible entre tes avant-bras. Contraction isom\u00e9trique 1 seconde en fermeture maximale avant de redescendre.</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Ex 2 -->
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">02</div>
-            <div class="ex-main">
-              <div class="ex-name">Développé incliné haltères</div>
-              <div class="ex-target">Pectoraux supérieurs · Deltoïdes antérieurs</div>
+        <!-- 2 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">02</div>
+            <div class="ex-info">
+              <div class="ex-name">D\u00e9velopp\u00e9 inclin\u00e9 halt\u00e8res</div>
+              <div class="ex-muscle">Pectoraux sup\u00e9rieurs \u00b7 Delto\u00efdes ant\u00e9rieurs \u00b7 Triceps</div>
             </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">10–12</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'</div><div class="param-label">Repos</div></div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">8\u201310</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'30</div><div class="spec-l">Repos</div></div>
             </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7</div><div class="rpe-label">RPE</div></div>
-                  <div>
-                    <div class="rpe-bar-wrap">
-                      <div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div><div class="rpe-pip"></div>
-                    </div>
-                    <div class="rpe-label" style="margin-top:4px">~60–65% 1RM</div>
-                  </div>
-                </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7\u20138</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Inclinaison du banc à 30–35° max. Au-delà, ce sont les épaules qui dominent, pas les pectoraux supérieurs.</p>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Banc \u00e0 30\u201335\u00b0 max. Halt\u00e8res amen\u00e9s \u00e0 hauteur des pectoraux en descente, coudes \u00e0 45\u201360\u00b0 du buste. Pousser en arc vers le centre, pas verticalement.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Coudes trop écartés (>90°) qui créent un stress excessif sur les épaules et réduisent le recrutement pectoral.</p>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Banc trop inclin\u00e9 (>45\u00b0) \u2192 ce sont les \u00e9paules qui travaillent, pas les pecs sup\u00e9rieurs. 30\u00b0 est la valeur optimale pour cibler le faisceau claviculaire.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>En haut du mouvement, tourne légèrement les haltères vers l'intérieur et contracte fort 1 seconde — pic de contraction maximal.</p>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">En haut du mouvement, rapproche les halt\u00e8res sans les faire se toucher et contracte fort 1 seconde. Cette l\u00e9g\u00e8re adduction maximise le recrutement pectoral.</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Ex 3 -->
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">03</div>
-            <div class="ex-main">
-              <div class="ex-name">Écarté poulie basse (câbles)</div>
-              <div class="ex-target">Pectoraux (isolation · faisceau inférieur)</div>
+        <!-- 3 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">03</div>
+            <div class="ex-info">
+              <div class="ex-name">\u00c9cart\u00e9 halt\u00e8res plat</div>
+              <div class="ex-muscle">Pectoraux (isolation \u00b7 \u00e9tirement maximal)</div>
             </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">12–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">12\u201315</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
             </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Légère flexion des coudes fixe tout le mouvement. Les câbles maintiennent une tension constante là où les haltères relâchent en bas.</p>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Coudes l\u00e9g\u00e8rement fl\u00e9chis et fixes. Descente en arc jusqu'\u00e0 sentir l'\u00e9tirement profond des pecs (ne pas forcer au-del\u00e0 de l'inconfort). Remonter lentement.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Tirer les câbles avec les bras fléchis — c'est devenu un développé, plus un écarté. Le rôle des biceps doit être nul.</p>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Poids trop lourds qui forcent \u00e0 plier les coudes \u2192 devient un d\u00e9velopp\u00e9. L'\u00e9cart\u00e9 se fait avec des charges l\u00e9g\u00e8res et un focus total sur l'\u00e9tirement.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Imagine que tu "serres un arbre" avec tes bras. La contraction vient de l'intérieur, pas de la traction externe.</p>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Cherche \u00e0 "ouvrir la cage thoracique" en descendant. La sensation d'\u00e9tirement en bas du mouvement est le signe que tu travailles correctement.</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Ex 4 -->
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">04</div>
-            <div class="ex-main">
-              <div class="ex-name">Développé militaire haltères</div>
-              <div class="ex-target">Deltoïdes · Trapèzes supérieurs · Triceps</div>
+        <!-- 4 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">04</div>
+            <div class="ex-info">
+              <div class="ex-name">D\u00e9velopp\u00e9 \u00e9paules machine (Shoulder Press)</div>
+              <div class="ex-muscle">Delto\u00efdes \u00b7 Triceps \u00b7 Trap\u00e8zes sup\u00e9rieurs</div>
             </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">4</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">8–10</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'</div><div class="param-label">Repos</div></div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">8\u201312</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
             </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7–8</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7\u20138</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Débuter avec les haltères à hauteur des épaules, paumes face vers l'avant. Gainage abdominal strict tout au long du mouvement.</p>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Dos plaqu\u00e9 contre le dossier, gainage abdominal. Pousser verticalement sans cambrer. La machine guide le trajet et prot\u00e8ge les \u00e9paules \u2014 id\u00e9al en d\u00e9but de pratique.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Cambrer le bas du dos pour compenser un manque de mobilité — charge les lombaires de façon dangereuse sur le long terme.</p>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Se d\u00e9coller du dossier pour pousser plus lourd \u2192 surcharge le bas du dos et retire la stabilit\u00e9. Le dos doit rester en contact permanent avec le dossier.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>À mi-chemin vers le haut, tourne légèrement les paumes vers l'intérieur — cela intensifie le recrutement du deltoïde médial.</p>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Progression naturelle : machine \u2192 halt\u00e8res assis \u2192 halt\u00e8res debout. Avanc\u00e9 : Arnold press pour recruter les 3 faisceaux delto\u00efdes en un seul mouvement.</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Ex 5 -->
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">05</div>
-            <div class="ex-main">
-              <div class="ex-name">Élévations latérales haltères</div>
-              <div class="ex-target">Deltoïdes médians (isolation)</div>
+        <!-- 5 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">05</div>
+            <div class="ex-info">
+              <div class="ex-name">\u00c9l\u00e9vations lat\u00e9rales halt\u00e8res</div>
+              <div class="ex-muscle">Delto\u00efdes m\u00e9dians (isolation)</div>
             </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">12–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">12\u201315</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
             </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Monter jusqu'à 90°, pas plus. Pencher légèrement le buste vers l'avant (+10–15°) pour isoler le deltoïde médian et sortir le trapèze du mouvement.</p>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">L\u00e9g\u00e8re inclinaison du buste vers l'avant (+15\u00b0), monter jusqu'\u00e0 90\u00b0 strictement. Pouce l\u00e9g\u00e8rement vers le bas (rotation interne) pour isoler le faisceau m\u00e9dian et sortir le trap\u00e8ze.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Utiliser l'élan du bas du dos (cheat reps) — cible les trapèzes, pas les épaules. Réduis le poids, contrôle prime.</p>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Utiliser l'\u00e9lan du bas du dos (cheat). R\u00e9duis le poids et travaille en unilat\u00e9ral avec appui si n\u00e9cessaire pour \u00e9liminer totalement la compensation.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Imagine que tu vides l'eau d'un verre en montant (pouce vers le bas). Cette rotation interne isole parfaitement le faisceau latéral.</p>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Imagine que tu vides l'eau d'un verre en montant (pouce vers le bas). Variante efficace : version assise sur banc inclin\u00e9 \u00e0 70\u00b0 (\u00e9limine toute possibilit\u00e9 d'\u00e9lan).</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Ex 6 -->
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">06</div>
-            <div class="ex-main">
-              <div class="ex-name">Élévations frontales câble</div>
-              <div class="ex-target">Deltoïdes antérieurs</div>
+        <!-- 6 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">06</div>
+            <div class="ex-info">
+              <div class="ex-name">\u00c9l\u00e9vations frontales halt\u00e8res</div>
+              <div class="ex-muscle">Delto\u00efdes ant\u00e9rieurs</div>
             </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">12–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">12\u201315</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
             </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Câble bas derrière toi, bras tendu, monter jusqu'à hauteur des yeux en contrôlant le retour sur 2–3 secondes.</p>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Monter un halt\u00e8re \u00e0 la fois (altern\u00e9) pour un meilleur contr\u00f4le. Bras quasi tendu, monter jusqu'\u00e0 hauteur des \u00e9paules seulement. Descente en 3 secondes.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Monter trop haut (au-dessus des épaules) → activation des trapèzes et perte de l'isolation deltoïde antérieur.</p>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Monter trop haut (au-dessus des \u00e9paules) ou utiliser l'\u00e9lan du buste \u2192 les trap\u00e8zes prennent le relais et l'isolation delto\u00efde est perdue.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Concentre-toi sur la phase excentrique (descente) en résistant activement → c'est là que se construit le muscle.</p>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Excentrique lent (3\u20134s) = cl\u00e9 de l'isolation. Plus efficace que de monter vite et redescendre vite. La phase de descente est souvent sous-exploit\u00e9e.</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Ex 7 -->
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">07</div>
-            <div class="ex-main">
-              <div class="ex-name">Dips lestés (ou machine)</div>
-              <div class="ex-target">Triceps · Pectoraux inférieurs · Deltoïdes</div>
+        <!-- 7 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">07</div>
+            <div class="ex-info">
+              <div class="ex-name">Extension triceps machine (ou poulie haute)</div>
+              <div class="ex-muscle">Triceps \u00b7 Long chef \u00b7 Vaste lat\u00e9ral</div>
             </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">8–12</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'</div><div class="param-label">Repos</div></div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">10\u201312</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
             </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7–8</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Corps vertical = accent triceps. Légèrement penché en avant = accent pectoraux. Descente contrôlée jusqu'à 90° max.</p>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Coudes fixes au corps. Extension compl\u00e8te en bas avec 1 seconde d'isom\u00e9trie. La machine triceps guide parfaitement le mouvement pour les d\u00e9butants.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Descendre trop bas (>90°) — stress excessif sur les tendons des épaules, risque de blessure à long terme.</p>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Coudes qui s'\u00e9cartent ou se soul\u00e8vent lors du retour \u2192 perte totale de l'isolation. Les coudes sont l'axe du mouvement, ils ne bougent pas.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Alternatif débutant : machine à dips assistée ou barre de traction basse (pieds au sol). Progresser vers lestage +5–10kg.</p>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Alternative : skull crusher halt\u00e8res sur banc plat (long chef maximal). Ou extension triceps derri\u00e8re la t\u00eate avec un seul halt\u00e8re tenu \u00e0 deux mains.</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Ex 8 -->
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">08</div>
-            <div class="ex-main">
-              <div class="ex-name">Extension triceps poulie haute</div>
-              <div class="ex-target">Triceps (isolation · long chef)</div>
+        <!-- 8 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">08</div>
+            <div class="ex-info">
+              <div class="ex-name">Kickback triceps halt\u00e8re</div>
+              <div class="ex-muscle">Triceps (isolation \u00b7 finisher)</div>
             </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">12–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">12\u201315</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'</div><div class="spec-l">Repos</div></div>
             </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Coudes collés au corps, fixes. Seuls les avant-bras bougent. Finir avec une supination légère pour maximiser le long chef.</p>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Buste parall\u00e8le au sol, bras parall\u00e8le au sol (coude fixe), extension compl\u00e8te. En position haute, la contraction des triceps est maximale.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Laisser les coudes s'écarter ou se lever lors de la montée — transforme le mouvement en pull-down partiel.</p>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Coude trop bas (bras non parall\u00e8le au sol) \u2192 plage de mouvement r\u00e9duite et contraction incompl\u00e8te. Le coude doit \u00eatre \u00e0 hauteur du dos.</div>
               </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Contraction maximale en extension complète avec 1 sec d'isométrie. C'est en bas du mouvement que le triceps est le plus recruté.</p>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Supination l\u00e9g\u00e8re du poignet (rotation vers l'ext\u00e9rieur) en extension compl\u00e8te \u2014 recrute davantage le chef lat\u00e9ral. Charge l\u00e9g\u00e8re, qualit\u00e9 maximale.</div>
               </div>
             </div>
           </div>
         </div>
 
-      </div><!-- /exercises-grid -->
-    </div><!-- /session-1 -->
-
-    <!-- SESSION 2 : PULL -->
-    <div class="session-panel day-2" id="session-2">
-      <div class="session-meta">
-        <span class="meta-badge"><span class="dot" style="background:var(--s2)"></span>Dos · Biceps · Arrière d'épaule</span>
-        <span class="meta-badge"><span class="dot"></span>120 min · 8 exercices</span>
-        <span class="meta-badge"><span class="dot"></span>Volume : ~20 séries pull</span>
-      </div>
-
-      <div class="exercises-grid">
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">01</div>
-            <div class="ex-main">
-              <div class="ex-name">Tractions pronation (ou Lat Pulldown)</div>
-              <div class="ex-target">Grand dorsal · Biceps · Rhomboïdes</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">4</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">6–10</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'30</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7–8</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Initier le mouvement avec les omoplates (dépression scapulaire) AVANT de plier les bras. Le dos tire, pas les bras.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Utiliser l'élan du corps pour monter — charge les biceps et épaules, pas le dorsal. Mouvement propre ou assist.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Imagine que tu "pousses tes coudes vers les hanches" plutôt que de tirer avec les mains — connexion dorsale immédiate.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">02</div>
-            <div class="ex-main">
-              <div class="ex-name">Rowing barre (Yates ou penché)</div>
-              <div class="ex-target">Grand dorsal · Trapèzes · Biceps · Rhomboïdes</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">4</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">8–10</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'30</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7–8</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Buste à 70° du sol, dos plat, barre tirée vers le nombril (pas la poitrine) pour maximiser le grand dorsal.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Se redresser à chaque répétition pour aider — perd toute la tension sur le dos. Fix : allège la charge.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Contracte les omoplates l'une vers l'autre à la fin du tirage et maintiens 1 seconde avant de descendre lentement.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">03</div>
-            <div class="ex-main">
-              <div class="ex-name">Rowing haltère unilatéral</div>
-              <div class="ex-target">Grand dorsal · Rhomboïdes · Biceps</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">10–12</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Appui genou + main sur le banc. Tirer vers la hanche ipsilatérale, coude collé au corps, rotation légère du buste en fin de mouvement.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Tirer avec le biceps plutôt que l'omoplate → bras se fatigue avant le dos. Pense "coude vers la hanche".</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Permet de corriger les déséquilibres droite/gauche — côté faible rattrape toujours le côté fort avec cet exercice.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">04</div>
-            <div class="ex-main">
-              <div class="ex-name">Pull-over câble ou haltère</div>
-              <div class="ex-target">Grand dorsal · Grand rond · Dentelé antérieur</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">12–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Bras presque tendus (légère flexion), étirer le dorsal en arrière et ramener en arc de cercle vers les hanches. Ampleur max = gains max.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Plier trop les coudes → transforme l'exercice en rowing. L'intérêt est l'allongement en extension complète.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Exercice fantastique pour sentir le grand dorsal en étirement, souvent difficile pour les débutants. Version câble haute recommandée.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">05</div>
-            <div class="ex-main">
-              <div class="ex-name">Oiseau haltères (Reverse fly)</div>
-              <div class="ex-target">Deltoïdes postérieurs · Rhomboïdes</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">12–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Buste penché à 90°, bras légèrement fléchis, soulever en arc jusqu'à hauteur des épaules. Mouvement lent et contrôlé.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Poids trop lourd → utilisation du bas du dos (élan). Cet exercice nécessite des charges légères pour être efficace.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Crucial pour l'équilibre épaules (deltoïde post. souvent sous-entraîné) et la posture. Alternative : machine butterfly inversée.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">06</div>
-            <div class="ex-main">
-              <div class="ex-name">Face pull câble</div>
-              <div class="ex-target">Deltoïdes postérieurs · Rotateurs externes · Trapèzes</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">15–20</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Câble à hauteur des yeux, corde, tirer vers le visage avec rotation externe → coudes hauts, mains derrière les oreilles en fin de mouvement.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Tirer trop bas (vers le menton) → active les triceps et la poitrine, pas les rotateurs externes. Garder les coudes à la hauteur des yeux.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Exercice de santé autant qu'esthétique — protège les épaules à long terme. À faire à chaque séance Pull, sans exception.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">07</div>
-            <div class="ex-main">
-              <div class="ex-name">Curl barre EZ</div>
-              <div class="ex-target">Biceps · Brachial antérieur</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">8–12</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Coudes fixes au niveau du corps, supination complète en haut. Descente en 3 secondes (excentrique lent = +30% d'hypertrophie).</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Balancer le buste pour monter → retire toute tension sur le biceps et risque lombaire. Charge = ego, résultat = zéro.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Variation utile : curl spider sur banc incliné (face vers le bas) — élimine totalement l'élan et maximise le pic de contraction.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">08</div>
-            <div class="ex-main">
-              <div class="ex-name">Curl marteau haltères</div>
-              <div class="ex-target">Biceps brachii · Brachio-radial · Brachial</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">12–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Prise neutre (pouce vers le haut) tout au long du mouvement. Peut se faire en alterné pour plus de focus par côté.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Supiner le poignet en haut → redevient un curl classique. La prise neutre doit rester fixe pour cibler le brachio-radial.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Excellent pour l'épaisseur des avant-bras et le "renflement" entre biceps et coude. Idéal en finisher de séance Pull.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- /session-2 -->
-
-    <!-- SESSION 3 : LEGS + CORE -->
-    <div class="session-panel day-3" id="session-3">
-      <div class="session-meta">
-        <span class="meta-badge"><span class="dot" style="background:var(--s3)"></span>Quadriceps · Ischio · Fessiers · Core</span>
-        <span class="meta-badge"><span class="dot"></span>120 min · 8 exercices</span>
-        <span class="meta-badge"><span class="dot"></span>Volume : ~20 séries jambes</span>
-      </div>
-
-      <div class="exercises-grid">
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">01</div>
-            <div class="ex-main">
-              <div class="ex-name">Squat barre (ou Goblet squat)</div>
-              <div class="ex-target">Quadriceps · Fessiers · Ischio-jambiers · Core</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">4</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">6–8</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">3'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Intensité</div>
-                <div class="intensity-bar">
-                  <div><div class="rpe-val">7–8</div><div class="rpe-label">RPE</div></div>
-                  <div><div class="rpe-bar-wrap"><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip filled"></div><div class="rpe-pip"></div><div class="rpe-pip"></div></div></div>
-                </div>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Pieds légèrement écartés et tournés à 15–30°. Descente sur 3 secondes, genoux suivant les orteils, talons au sol. Descendre au moins à 90°.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>"Butt wink" (bascule du bassin en bas) → compression lombaire. Cause : mobilité des chevilles insuffisante ou profondeur trop grande.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Débutant → Goblet squat haltère (apprentissage du pattern). Intermédiaire → squat barre haute. Avancé → squat paused ou box squat.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">02</div>
-            <div class="ex-main">
-              <div class="ex-name">Leg press 45°</div>
-              <div class="ex-target">Quadriceps · Fessiers (placement pieds)</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">4</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">10–12</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Pieds bas + rapprochés = quadriceps. Pieds hauts + écartés = fessiers/ischio. Ne jamais verrouiller les genoux en extension.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Laisser les genoux rentrer vers l'intérieur (valgus) sous charge — stress excessif sur les ligaments croisés.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Complémentaire au squat — permet de charger plus lourd en toute sécurité et d'isoler davantage les quads ou fessiers selon placement.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">03</div>
-            <div class="ex-main">
-              <div class="ex-name">Romanian Deadlift (RDL)</div>
-              <div class="ex-target">Ischio-jambiers · Fessiers · Érecteurs spinaux</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">10–12</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Hanches en arrière (hip hinge), dos droit, barre qui glisse le long des jambes, descente jusqu'à sentir l'étirement des ischio-jambiers.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Fléchir les genoux (→ devient un deadlift classique) ou arrondir le dos. Ce sont les hanches qui "charnière", pas les genoux.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Cherche le "brûlé" dans les ischios à mi-descente — si tu ne le sens pas, ta mobilité de hanches est le limitant. Travailler la souplesse des ischios en parallèle.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">04</div>
-            <div class="ex-main">
-              <div class="ex-name">Fentes marchées haltères</div>
-              <div class="ex-target">Fessiers · Quadriceps · Ischio · Équilibre</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">10/côté</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Grand pas, genou avant au-dessus du pied (jamais en avant), genou arrière à 2–3cm du sol. Buste droit, haltères le long du corps.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Trop petit pas → stress sur le genou avant. Le genou avant ne devrait jamais dépasser les orteils dans le plan sagittal.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Débutant : fentes statiques (split squat). Puis fentes marchées. Avancé : fentes bulgares (pied arrière surélevé) — exercice roi des fessiers.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">05</div>
-            <div class="ex-main">
-              <div class="ex-name">Leg curl couché (ischio isolation)</div>
-              <div class="ex-target">Ischio-jambiers (biceps fémoral · semi-tendineux)</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">12–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'30</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Hanche plaquée contre le coussin. Contraction maximale en haut, descente en 3 secondes. Ne pas laisser les fesses se soulever.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Soulever les fesses pour "aider" → activation des fessiers et perte de l'isolation ischio. C'est la machine qui fait le travail, pas le bas du dos.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Les ischios sont souvent moins bien récupérés que les quads — surveiller la courbature et ne pas hésiter à réduire le volume si persistante.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">06</div>
-            <div class="ex-main">
-              <div class="ex-name">Hip thrust barre</div>
-              <div class="ex-target">Fessiers (grand fessier · isolation maximale)</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">4</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">10–15</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">2'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Dos appuyé sur le banc (omoplates), pieds à plat, pousser avec les talons. En haut : bassin horizontal, serrer les fessiers 2 secondes.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Hyper-extension lombaire en haut → le bas du dos travaille à la place des fessiers. Le bassin doit rester "neutre" en extension.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>L'exercice le plus efficace scientifiquement pour le grand fessier. Progression rapide possible : +5–10kg par semaine en début de pratique.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">07</div>
-            <div class="ex-main">
-              <div class="ex-name">Gainage planche + variantes</div>
-              <div class="ex-target">Core (transverse · obliques · érecteurs)</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">45–60s</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Alignement parfait tête-épaules-hanches-talons. Contracter l'abdomen comme si tu allais recevoir un coup de poing. Respiration nasale.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Laisser les hanches descendre ou monter → perd tout l'intérêt du gainage. Durée raccourcie mais qualité parfaite toujours préférable.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Progression : planche → planche avec extension bras alterné → planche sur disques (glisse) → planche avec lest. Ou passer aux ab-wheel rollouts.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-          <div class="exercise-header">
-            <div class="ex-number">08</div>
-            <div class="ex-main">
-              <div class="ex-name">Crunch poulie haute + relevé de jambes</div>
-              <div class="ex-target">Abdominaux (droit · transverse)</div>
-            </div>
-            <div class="ex-params">
-              <div class="param"><div class="param-val">3</div><div class="param-label">Séries</div></div>
-              <div class="param"><div class="param-val">15–20</div><div class="param-label">Reps</div></div>
-              <div class="param"><div class="param-val">1'</div><div class="param-label">Repos</div></div>
-            </div>
-            <svg class="ex-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-          <div class="exercise-details">
-            <div class="details-inner">
-              <div class="detail-block">
-                <div class="detail-block-title">Conseil technique</div>
-                <p>Crunch câble : genoux au sol, tirer vers le bas en fléchissant le buste (flexion vertébrale, pas tirage épaules). Supersérie possible avec relevé de jambes suspendu.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Erreur fréquente</div>
-                <p>Tirer avec les bras sur le crunch câble → biceps et épaules travaillent, pas les abdos. Le mouvement part de l'ombilic vers le sternum.</p>
-              </div>
-              <div class="detail-block">
-                <div class="detail-block-title">Connexion musculaire</div>
-                <p>Les abdos répondent bien aux hautes répétitions ET à la résistance progressive. Ne pas négliger la charge sur le crunch poulie.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div><!-- /session-3 -->
-
-  </div>
-</section>
-
-<div class="divider container"></div>
-
-<!-- PROGRESSION -->
-<section>
-  <div class="container">
-    <div class="section-header" style="padding-top:0">
-      <p class="section-tag">02 · Surcharge progressive</p>
-      <h2 class="section-title">PLAN 6 SEMAINES</h2>
-    </div>
-
-    <div class="progression-grid">
-
-      <div class="week-card">
-        <div class="week-num">1–2</div>
-        <div class="week-title">Fondations</div>
-        <div class="week-focus">Maîtrise technique · Calibrage des charges</div>
-        <div class="week-details">
-          <div class="week-item">Toutes séries à RPE 6–7 max — sentir le mouvement, pas se tuer</div>
-          <div class="week-item">3 séries × 10–12 reps sur tous les exercices</div>
-          <div class="week-item">Objectif : trouver le bon poids de travail pour chaque exercice</div>
-          <div class="week-item">Temps de repos respectés à la seconde près</div>
-          <div class="week-item">Journal de séance obligatoire : noter charges + reps</div>
-        </div>
-      </div>
-
-      <div class="week-card">
-        <div class="week-num">3–4</div>
-        <div class="week-title">Montée en volume</div>
-        <div class="week-focus">+1 série · Augmentation des charges</div>
-        <div class="week-details">
-          <div class="week-item">Passer à 4 séries sur les exercices polyarticulaires principaux</div>
-          <div class="week-item">RPE cible : 7–8 — 1–2 reps en réserve</div>
-          <div class="week-item">Si tu finis toutes les reps avec facilité → +2,5 à 5kg la semaine suivante</div>
-          <div class="week-item">Fourchette basse des reps sur les composés (6–8 reps)</div>
-          <div class="week-item">Réduire le repos des exercices d'isolation de 15 secondes</div>
-        </div>
-      </div>
-
-      <div class="week-card">
-        <div class="week-num">5</div>
-        <div class="week-title">Intensification</div>
-        <div class="week-focus">RPE 8–9 · Techniques avancées</div>
-        <div class="week-details">
-          <div class="week-item">Charges maximales sur les composés (RPE 8–9, 1 rep en réserve)</div>
-          <div class="week-item">Introduction des techniques d'intensification sur 1 exercice/séance</div>
-          <div class="week-item">Drop set sur le dernier exercice d'isolation de chaque séance</div>
-          <div class="week-item">Rest-pause possible sur curl ou extension triceps</div>
-          <div class="week-item">Excentrique lent (3–4s) sur squats et développés</div>
-        </div>
-      </div>
-
-      <div class="week-card deload">
-        <div class="week-num">6</div>
-        <div class="week-title">Deload</div>
-        <div class="week-focus">⚡ Récupération active · Supercompensation</div>
-        <div class="week-details">
-          <div class="week-item">Garder les mêmes exercices, réduire le volume de 40–50%</div>
-          <div class="week-item">Charges identiques ou légèrement réduites (~80% sem. 5)</div>
-          <div class="week-item">RPE max 6 — aucune sensation de brûlure musculaire</div>
-          <div class="week-item">Priorité : sommeil, nutrition, mobilité</div>
-          <div class="week-item">Sem. 7 : recommencer cycle avec charges semaine 5 + 2,5–5kg</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider container"></div>
-
-<!-- PROTOCOLS -->
-<section>
-  <div class="container">
-    <div class="section-header" style="padding-top:0">
-      <p class="section-tag">03 · Protocoles</p>
-      <h2 class="section-title">ÉCHAUFFEMENT & RÉCUPÉRATION</h2>
-    </div>
-
-    <div class="protocol-grid">
-
-      <div class="protocol-card">
-        <div class="protocol-icon">🔥</div>
-        <div class="protocol-title">Protocole Échauffement</div>
-        <div class="protocol-list">
-          <div class="protocol-item"><div class="protocol-item-num">01</div><div>5–8 min cardio léger (vélo, rameur) — élévation de la température corporelle</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">02</div><div>Mobilité articulaire dynamique : circles d'épaules, hip circles, leg swings (2 min)</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">03</div><div>Activation musculaire : 2 séries légères du premier exercice de la séance à 40% puis 60% de la charge de travail</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">04</div><div>Activation scapulaire (bandes élastiques) avant tout exercice de poussée ou tirage</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">05</div><div>Étirements dynamiques ciblés selon la séance : épaules (Push), dorsaux (Pull), quadriceps/fessiers (Legs)</div></div>
-        </div>
-      </div>
-
-      <div class="protocol-card">
-        <div class="protocol-icon">🌙</div>
-        <div class="protocol-title">Récupération Optimale</div>
-        <div class="protocol-list">
-          <div class="protocol-item"><div class="protocol-item-num">01</div><div>7–9h de sommeil par nuit — 90% de la sécrétion de GH se fait durant le sommeil profond</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">02</div><div>Au moins 48h de repos entre deux séances sollicitant les mêmes muscles</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">03</div><div>Étirements statiques post-séance : 20–30 sec par groupe musculaire travaillé</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">04</div><div>Marche quotidienne 20–30 min — réduit l'inflammation et améliore la circulation</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">05</div><div>Gestion du stress (cortisol = ennemi de l'hypertrophie) : respiration, méditation, ou toute activité de récupération mentale</div></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider container"></div>
-
-<!-- NUTRITION -->
-<section>
-  <div class="container">
-    <div class="section-header" style="padding-top:0">
-      <p class="section-tag">04 · Nutrition de base</p>
-      <h2 class="section-title">CARBURANT POUR CROÎTRE</h2>
-    </div>
-
-    <div class="nutrition-grid">
-      <div class="macro-card">
-        <div class="macro-val">+300<span class="macro-unit">kcal</span></div>
-        <div class="macro-name">Surplus calorique</div>
-        <div class="macro-note">Au-dessus de ta maintenance. Ni trop, ni trop peu. Prise de masse lean.</div>
-      </div>
-      <div class="macro-card">
-        <div class="macro-val">1,8–2,2<span class="macro-unit">g/kg</span></div>
-        <div class="macro-name">Protéines</div>
-        <div class="macro-note">Par kg de poids de corps. Priorité absolue. Répartis sur 4–5 repas.</div>
-      </div>
-      <div class="macro-card">
-        <div class="macro-val">4–6<span class="macro-unit">g/kg</span></div>
-        <div class="macro-name">Glucides</div>
-        <div class="macro-note">Carburant musculaire. Avoine, riz, patate douce, fruits. Charge autour des séances.</div>
-      </div>
-      <div class="macro-card">
-        <div class="macro-val">0,8–1<span class="macro-unit">g/kg</span></div>
-        <div class="macro-name">Lipides</div>
-        <div class="macro-note">Huile d'olive, avocats, oléagineux. Indispensables pour les hormones anabolisantes.</div>
-      </div>
-      <div class="macro-card">
-        <div class="macro-val">40g</div>
-        <div class="macro-name">Protéines / repas</div>
-        <div class="macro-note">Max synthétisable par repas pour la MPS. Répartir plutôt qu'accumuler le soir.</div>
       </div>
     </div>
 
-    <div class="protocol-grid" style="margin-bottom:80px">
-      <div class="protocol-card">
-        <div class="protocol-icon">⏰</div>
-        <div class="protocol-title">Timing Nutritionnel</div>
-        <div class="protocol-list">
-          <div class="protocol-item"><div class="protocol-item-num">PRÉ</div><div>30–90 min avant : repas riche en glucides complexes + protéines (ex : riz + poulet, ou flocons d'avoine + whey). Éviter les lipides en excès (digestion lente).</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">POST</div><div>Dans les 2h après la séance : 30–40g de protéines + glucides rapides/lents. Whey + banane ou riz + œufs. La fenêtre anabolique est réelle mais large.</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">NUIT</div><div>Caséine avant le coucher (fromage blanc, yaourt grec, ou caséine en poudre) — digestion lente qui nourrit les muscles pendant 6–8h de sommeil.</div></div>
-        </div>
+    <!-- SESSION 2 -->
+    <div class="session-panel s2" id="sp2">
+      <div class="s-meta">
+        <span class="s-badge">Dos \u00b7 Biceps \u00b7 Delto\u00efdes post\u00e9rieurs</span>
+        <span class="s-badge">120 min \u00b7 8 exercices</span>
+        <span class="s-badge">~20 s\u00e9ries pull</span>
       </div>
+      <div class="ex-list">
 
-      <div class="protocol-card">
-        <div class="protocol-icon">💊</div>
-        <div class="protocol-title">Compléments Essentiels</div>
-        <div class="protocol-list">
-          <div class="protocol-item"><div class="protocol-item-num">★★★</div><div>Créatine monohydrate : 3–5g/jour (sans phase de charge). Le complément le plus étudié. +5–10% de force dès 4 semaines.</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">★★★</div><div>Whey protéine : si difficile d'atteindre l'apport protéique via l'alimentation seule. 1–2 shakes/jour max.</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">★★☆</div><div>Vitamine D3 : 2000–4000 UI/jour, surtout en automne/hiver. Rôle clé dans la testostérone et la récupération.</div></div>
-          <div class="protocol-item"><div class="protocol-item-num">★★☆</div><div>Oméga-3 : 2–3g EPA+DHA/jour. Anti-inflammatoire, améliore la MPS et la récupération articulaire.</div></div>
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Lat Pulldown machine (prise large)</div>
+              <div class="ex-muscle">Grand dorsal \u00b7 Biceps \u00b7 Rhombo\u00efdes</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">8\u201310</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7\u20138</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Initier avec la d\u00e9pression scapulaire (omoplates vers le bas) AVANT de plier les bras. Tirer vers le haut du sternum, l\u00e9g\u00e8re inclinaison du buste vers l'arri\u00e8re.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Tirer avec les bras directement sans activer le dos en premier \u2192 biceps \u00e9puis\u00e9s, grand dorsal sous-stimul\u00e9. La d\u00e9pression scapulaire est le vrai d\u00e9clencheur du mouvement.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Imagine que tu "pousses tes coudes vers tes hanches" plut\u00f4t que de tirer la barre vers toi \u2014 connexion dorsale imm\u00e9diate et spectaculaire.</div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">02</div>
+            <div class="ex-info">
+              <div class="ex-name">Rowing machine assise (Seated Cable Row)</div>
+              <div class="ex-muscle">Grand dorsal \u00b7 Trap\u00e8zes moyens \u00b7 Rhombo\u00efdes \u00b7 Biceps</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">10\u201312</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Dos droit, l\u00e9g\u00e8re cambrure lombaire. Tirer la poign\u00e9e vers le nombril, coudes le long du corps. Contraction scapulaire maximale en fin de tirage.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Se balancer en avant/arri\u00e8re avec le buste \u2192 charge les lombaires et retire toute tension sur le dos. Buste fixe, seuls les bras et les omoplates bougent.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">En fin de tirage, maintiens la contraction 2 secondes en pin\u00e7ant bien les omoplates l'une vers l'autre. C'est ce temps sous tension qui construit l'\u00e9paisseur du dos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">03</div>
+            <div class="ex-info">
+              <div class="ex-name">Rowing halt\u00e8re unilat\u00e9ral (appui banc)</div>
+              <div class="ex-muscle">Grand dorsal \u00b7 Rhombo\u00efdes \u00b7 Biceps</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">10\u201312/c\u00f4t\u00e9</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Genou + main ipsilat\u00e9raux appuy\u00e9s sur le banc. Tirer l'halt\u00e8re vers la hanche (pas vers l'\u00e9paule). L\u00e9g\u00e8re rotation du buste en fin de mouvement pour amplifier la contraction.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Tirer avec le biceps (bras trop fl\u00e9chi au d\u00e9part) \u2192 dos sous-activ\u00e9. Pense "coude vers la hanche" et non "main vers l'\u00e9paule".</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Excellent pour corriger les d\u00e9s\u00e9quilibres gauche/droite. Commence toujours par le c\u00f4t\u00e9 faible et ne fais pas plus de reps du c\u00f4t\u00e9 fort.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">04</div>
+            <div class="ex-info">
+              <div class="ex-name">Pull-over halt\u00e8re (banc plat)</div>
+              <div class="ex-muscle">Grand dorsal \u00b7 Grand rond \u00b7 Dentel\u00e9 ant\u00e9rieur</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">12\u201315</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Halt\u00e8re tenu \u00e0 deux mains au-dessus de la poitrine, descente en arc derri\u00e8re la t\u00eate jusqu'\u00e0 sentir l'\u00e9tirement du dorsal. Bras presque tendus (l\u00e9g\u00e8re flexion coudes).</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Plier trop les coudes \u2192 transforme l'exercice en d\u00e9velopp\u00e9. L'int\u00e9r\u00eat est l'allongement du grand dorsal en extension \u2014 pr\u00e9serve la l\u00e9g\u00e8re flexion des coudes et ne la modifie pas.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Inspire profond\u00e9ment en descente (\u00e9tirement de la cage thoracique), expire en for\u00e7ant le retour. Cette respiration amplifie l'\u00e9tirement et la contraction dorsale.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">05</div>
+            <div class="ex-info">
+              <div class="ex-name">Oiseau halt\u00e8res / Reverse Pec Deck</div>
+              <div class="ex-muscle">Delto\u00efdes post\u00e9rieurs \u00b7 Rhombo\u00efdes \u00b7 Trap\u00e8zes</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">12\u201315</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Buste pench\u00e9 \u00e0 90\u00b0, bras l\u00e9g\u00e8rement fl\u00e9chis et fixes. \u00c9lever en arc jusqu'\u00e0 hauteur des \u00e9paules. Alternative machine : Reverse Pec Deck (poign\u00e9es en face de soi).</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Poids trop lourd \u2192 \u00e9lan du bas du dos. Descendre en dessous de 6\u20138kg si n\u00e9cessaire. La connexion avec le delto\u00efde post\u00e9rieur est subtile et se perd facilement.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Delto\u00efde post\u00e9rieur = muscle invisible mais essentiel pour la posture et la sant\u00e9 des \u00e9paules. Le n\u00e9gliger = d\u00e9s\u00e9quilibre ant\u00e9rieur/post\u00e9rieur \u00e0 long terme.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">06</div>
+            <div class="ex-info">
+              <div class="ex-name">Face Pull machine / c\u00e2ble</div>
+              <div class="ex-muscle">Rotateurs externes \u00b7 Delto\u00efdes post. \u00b7 Trap\u00e8zes</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">15\u201320</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">C\u00e2ble \u00e0 hauteur des yeux. Tirer vers le visage avec rotation externe \u2192 coudes hauts, mains derri\u00e8re les oreilles en position finale. Contr\u00f4le total sur le retour.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Tirer trop bas (vers le menton/poitrine) \u2192 activer les triceps et non les rotateurs externes. La corde doit venir vers le front, pas vers la gorge.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Exercice de sant\u00e9 autant qu'esth\u00e9tique. Prot\u00e8ge les \u00e9paules \u00e0 long terme. \u00c0 r\u00e9aliser \u00e0 chaque s\u00e9ance Pull sans exception \u2014 ton futur moi te remerciera.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">07</div>
+            <div class="ex-info">
+              <div class="ex-name">Curl machine assise (biceps)</div>
+              <div class="ex-muscle">Biceps \u00b7 Brachial ant\u00e9rieur</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">10\u201312</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">La machine stabilise les coudes \u2014 exploite \u00e7a. Supination compl\u00e8te du poignet en haut. Descente en 3 secondes (excentrique = 30% de masse musculaire en plus vs concentrique seul).</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Ne pas aller en extension compl\u00e8te en bas \u2192 plage de mouvement incompl\u00e8te \u2192 moins d'\u00e9tirement = moins de croissance. Extension compl\u00e8te \u00e0 chaque rep.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Progression : machine \u2192 curl halt\u00e8res inclin\u00e9 (\u00e9tirement maximal) \u2192 curl araign\u00e9e (spider curl) \u2192 curl concentration. Chaque variante cible un aspect diff\u00e9rent du biceps.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">08</div>
+            <div class="ex-info">
+              <div class="ex-name">Curl marteau halt\u00e8res (altern\u00e9)</div>
+              <div class="ex-muscle">Brachio-radial \u00b7 Brachial \u00b7 Biceps</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">12\u201315</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Prise neutre (pouce vers le haut) maintenue tout au long. Altern\u00e9 = meilleur focus par c\u00f4t\u00e9. Coudes fixes, seuls les avant-bras bougent.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Supiner le poignet en haut \u2192 redevient un curl classique. La prise neutre doit rester stricte pour cibler le brachio-radial et l'\u00e9paisseur des avant-bras.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Excellent finisher bras \u2014 construit l'\u00e9paisseur entre biceps et coude visible \u00e0 bras tendu. Id\u00e9al en supers\u00e9rie avec le curl machine pour une fatigue totale des fl\u00e9chisseurs.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-  </div>
-</section>
+    <!-- SESSION 3 -->
+    <div class="session-panel s3" id="sp3">
+      <div class="s-meta">
+        <span class="s-badge">Quadriceps \u00b7 Ischio \u00b7 Fessiers \u00b7 Core</span>
+        <span class="s-badge">120 min \u00b7 8 exercices</span>
+        <span class="s-badge">~22 s\u00e9ries jambes</span>
+      </div>
+      <div class="ex-list">
 
-<footer>
-  <div class="container">
-    <p>PROGRAMME HYPERTROPHIE 3J · DÉBUTANT → INTERMÉDIAIRE · SURCHARGE PROGRESSIVE 6 SEMAINES</p>
-    <p style="margin-top:8px">Consulte un médecin avant de débuter tout programme d'entraînement intensif.</p>
-  </div>
-</footer>
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Leg Press 45\u00b0</div>
+              <div class="ex-muscle">Quadriceps \u00b7 Fessiers \u00b7 Ischio-jambiers</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">8\u201312</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">3'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7\u20138</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Pieds bas + rapproch\u00e9s = quadriceps dominants. Pieds hauts + \u00e9cart\u00e9s = fessiers/ischio dominants. Ne jamais verrouiller les genoux en extension compl\u00e8te.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Laisser les genoux rentrer vers l'int\u00e9rieur (valgus dynamique) sous la charge \u2192 stress ligamentaire \u00e9lev\u00e9. Les genoux suivent la ligne des orteils en permanence.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Exercice roi des jambes \u00e0 la machine \u2014 plus s\u00e9curitaire que le squat barre pour les d\u00e9butants. Permet des charges importantes d\u00e8s les premi\u00e8res semaines.</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<script>
-  function showSession(day) {
-    document.querySelectorAll('.session-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.session-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('session-' + day).classList.add('active');
-    document.querySelector('[data-day="' + day + '"]').classList.add('active');
-  }
-
-  function toggleCard(card) {
-    const isOpen = card.classList.contains('open');
-    // Close all in same grid
-    card.closest('.exercises-grid').querySelectorAll('.exercise-card').forEach(c => c.classList.remove('open'));
-    if (!isOpen) card.classList.add('open');
-  }
-</script>
-
-</body>
-</html>
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">02</div>
+            <div class="ex-info">
+              <div class="ex-name">Goblet Squat halt\u00e8re</div>
+              <div class="ex-muscle">Quadriceps \u00b7 Fessiers \u00b7 Core \u00b7 Adducteurs</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">S\u00e9ries</div></div>
+              <div class="spec"><div class="spec-v">10\u201312</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensit\u00e9</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Halt\u00e8re tenu verticalement contre la poitrine (mains sous la t\u00eate). Le poids devant am\u00e9liore le centrage et aide naturellement \u00e0 garder le buste droit et les talons au sol.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fr\u00e9quente</div>
+                <div class="c-text">Talons qui d\u00e9collent \u2192 manque de mobilit\u00e9 des chevilles. Solution : caler les talons sur des disques sur\u00e9lev\u00e9s temporairement jusqu'\u00e0 am\u00e9lioration de la mobilit\u00e9.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Meilleur exercice d'apprentissage du squat. Progression : Goblet squat \u2192 Split squat halt\u00e8res \u2192 Sq
