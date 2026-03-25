@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme Hypertrophie — Haltères & Machines</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2ed;
+    --surface: #ffffff;
+    --surface2: #ede9e3;
+    --border: #ddd9d2;
+    --ink: #1a1814;
+    --ink-muted: #8a8680;
+    --ink-dim: #c8c4bc;
+    --gold: #c8963c;
+    --gold-light: #f5e8d0;
+    --s1: #2d6a4f;
+    --s2: #1d4e89;
+    --s3: #7b2d8b;
+    --s1-light: #d8f3dc;
+    --s2-light: #dbeafe;
+    --s3-light: #f3e8ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 80px 24px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: 'H';
+    position: absolute;
+    right: -20px;
+    top: -40px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 400px;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(44px, 8vw, 100px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: rgba(245,242,237,0.55);
+    max-width: 520px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(245,242,237,0.6);
+    letter-spacing: 0.05em;
+  }
+
+  .pill .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  .sessions-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 48px;
+    overflow-x: auto;
+  }
+
+  .s-tab {
+    padding: 16px 28px;
+    background: transparent;
+    border: none;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .s-tab:hover { color: var(--ink); }
+
+  .s-tab.active[data-s="1"] { color: var(--s1); border-bottom-color: var(--s1); }
+  .s-tab.active[data-s="2"] { color: var(--s2); border-bottom-color: var(--s2); }
+  .s-tab.active[data-s="3"] { color: var(--s3); border-bottom-color: var(--s3); }
+
+  /* SECTION TITLES */
+  .sec-wrap { padding: 64px 0 0; }
+
+  .sec-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .sec-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 56px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 40px;
+  }
+
+  /* SESSION META */
+  .session-panel { display: none; }
+  .session-panel.active { display: block; }
+
+  .s-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .s-badge {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .s1 .s-badge { background: var(--s1-light); color: var(--s1); }
+  .s2 .s-badge { background: var(--s2-light); color: var(--s2); }
+  .s3 .s-badge { background: var(--s3-light); color: var(--s3); }
+
+  /* EXERCISE TABLE */
+  .ex-list { display: flex; flex-direction: column; gap: 3px; margin-bottom: 72px; }
+
+  .ex-row {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .ex-row:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+  .ex-top {
+    display: grid;
+    grid-template-columns: 48px 1fr auto 28px;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+  }
+
+  .ex-idx {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    font-weight: 500;
+  }
+
+  .ex-info {}
+  .ex-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+
+  .ex-muscle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .ex-specs {
+    display: flex;
+    gap: 24px;
+  }
+
+  .spec { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+
+  .spec-v {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .spec-l {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+  }
+
+  .ex-toggle {
+    color: var(--ink-dim);
+    transition: transform 0.25s;
+  }
+
+  .ex-row.open .ex-toggle { transform: rotate(180deg); }
+
+  /* COACHING PANEL */
+  .ex-coaching {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    border-top: 1px solid transparent;
+  }
+
+  .ex-row.open .ex-coaching {
+    max-height: 500px;
+    border-top-color: var(--border);
+  }
+
+  .coaching-inner {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    background: var(--surface2);
+  }
+
+  .c-block {}
+
+  .c-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .c-text {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .rpe-display {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .rpe-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .rpe-suffix {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  .rpe-track {
+    display: flex;
+    gap: 3px;
+  }
+
+  .rpe-seg {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--border);
+  }
+
+  .rpe-seg.on { background: var(--ink); }
+
+  /* SESSION COLOR ACCENT */
+  .s1 .ex-name { }
+  .s1 .ex-row.open { border-color: rgba(45,106,79,0.25); }
+  .s2 .ex-row.open { border-color: rgba(29,78,137,0.25); }
+  .s3 .ex-row.open { border-color: rgba(123,45,139,0.25); }
+
+  /* PROGRESSION */
+  .prog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    margin-bottom: 72px;
+  }
+
+  .prog-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+  }
+
+  .prog-card:first-child { border-radius: 12px 0 0 12px; }
+  .prog-card:last-child { border-radius: 0 12px 12px 0; }
+
+  .prog-card.deload {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+
+  .prog-week {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .prog-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .prog-items { display: flex; flex-direction: column; gap: 8px; }
+
+  .prog-item {
+    display: flex;
+    gap: 10px;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .prog-arrow { color: var(--gold); flex-shrink: 0; font-size: 12px; }
+  .prog-card.deload .prog-item { color: rgba(245,242,237,0.7); }
+
+  /* PROTOCOLS */
+  .proto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 72px;
+  }
+
+  .proto-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  .proto-ico { font-size: 28px; margin-bottom: 14px; }
+
+  .proto-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .proto-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .proto-item {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  .proto-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+    min-width: 20px;
+    font-weight: 500;
+  }
+
+  /* NUTRITION */
+  .macro-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2px;
+    margin-bottom: 16px;
+  }
+
+  .macro-cell {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .macro-cell:first-child { border-radius: 10px 0 0 10px; }
+  .macro-cell:last-child { border-radius: 0 10px 10px 0; }
+
+  .macro-val {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .macro-unit { font-size: 14px; color: var(--ink-muted); }
+
+  .macro-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 6px;
+  }
+
+  .macro-note { font-size: 11px; color: var(--ink-dim); margin-top: 4px; }
+
+  /* DIVIDER */
+  .hr { height: 1px; background: var(--border); margin: 0 0 0; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(245,242,237,0.4);
+    padding: 40px 24px;
+    text-align: center;
+    margin-top: 80px;
+  }
+
+  footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 640px) {
+    .ex-specs { display: none; }
+    .ex-top { grid-template-columns: 36px 1fr 24px; }
+    .coaching-inner { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 48px; }
+    .prog-card:first-child, .prog-card:last-child { border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-tag">Programme professionnel · Haltères & Machines · 6 semaines</p>
+    <h1>MASSE<br><em>MUSCULAIRE</em></h1>
+    <p class="hero-desc">Programme hypertrophie sur 3 séances/semaine, conçu exclusivement avec haltères et machines. Surcharge progressive, coaching expert, zéro barre libre.</p>
+    <div class="hero-pills">
+      <span class="pill"><span class="dot"></span>3 séances × 2h</span>
+      <span class="pill"><span class="dot"></span>8 exercices / séance</span>
+      <span class="pill"><span class="dot"></span>Haltères + Machines uniquement</span>
+      <span class="pill"><span class="dot"></span>RPE 6 → 9 sur 6 semaines</span>
+      <span class="pill"><span class="dot"></span>Deload semaine 6</span>
+    </div>
+  </div>
+</section>
+
+<!-- SESSIONS -->
+<section class="sec-wrap">
+  <div class="container">
+    <p class="sec-eyebrow">01 · Programme hebdomadaire</p>
+    <h2 class="sec-title">Les 3 séances</h2>
+
+    <div class="sessions-nav">
+      <button class="s-tab active" data-s="1" onclick="showS(1)">🟢 Lundi · Pectoraux + Épaules + Triceps</button>
+      <button class="s-tab" data-s="2" onclick="showS(2)">🔵 Mercredi · Dos + Biceps + Épaules arr.</button>
+      <button class="s-tab" data-s="3" onclick="showS(3)">🟣 Vendredi · Jambes + Fessiers + Core</button>
+    </div>
+
+    <!-- SESSION 1 -->
+    <div class="session-panel s1 active" id="sp1">
+      <div class="s-meta">
+        <span class="s-badge">Pectoraux · Épaules · Triceps</span>
+        <span class="s-badge">120 min · 8 exercices</span>
+        <span class="s-badge">~18 séries push</span>
+      </div>
+      <div class="ex-list">
+
+        <!-- 1 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Pec Deck / Pec Fly Machine</div>
+              <div class="ex-muscle">Pectoraux · Chef sternal</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">10–12</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">/ 10 RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Rétraction scapulaire avant de démarrer. Coudes légèrement fléchis et fixes. Descente lente (3s), retour contrôlé — ne pas laisser les plaques se toucher pour maintenir la tension.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Laisser les coudes se plier davantage en cours de mouvement → transforme l'isolation en poussée. La flexion du coude doit être définie au départ et ne plus bouger.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Imagine que tu serres un ballon invisible entre tes avant-bras. Contraction isométrique 1 seconde en fermeture maximale avant de redescendre.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">02</div>
+            <div class="ex-info">
+              <div class="ex-name">Développé incliné haltères</div>
+              <div class="ex-muscle">Pectoraux supérieurs · Deltoïdes antérieurs · Triceps</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">8–10</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7–8</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Banc à 30–35° max. Haltères amenés à hauteur des pectoraux en descente, coudes à 45–60° du buste. Pousser en arc vers le centre, pas verticalement.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Banc trop incliné (>45°) → ce sont les épaules qui travaillent, pas les pecs supérieurs. 30° est la valeur optimale pour cibler le faisceau claviculaire.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">En haut du mouvement, rapproche les haltères sans les faire se toucher et contracte fort 1 seconde. Cette légère adduction maximise le recrutement pectoral.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">03</div>
+            <div class="ex-info">
+              <div class="ex-name">Écarté haltères plat</div>
+              <div class="ex-muscle">Pectoraux (isolation · étirement maximal)</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Coudes légèrement fléchis et fixes. Descente en arc jusqu'à sentir l'étirement profond des pecs (ne pas forcer au-delà de l'inconfort). Remonter lentement.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Poids trop lourds qui forcent à plier les coudes → devient un développé. L'écarté se fait avec des charges légères et un focus total sur l'étirement.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Cherche à "ouvrir la cage thoracique" en descendant. La sensation d'étirement en bas du mouvement est le signe que tu travailles correctement.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">04</div>
+            <div class="ex-info">
+              <div class="ex-name">Développé épaules machine (Shoulder Press)</div>
+              <div class="ex-muscle">Deltoïdes · Triceps · Trapèzes supérieurs</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">8–12</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7–8</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Dos plaqué contre le dossier, gainage abdominal. Pousser verticalement sans cambrer. La machine guide le trajet et protège les épaules — idéal en début de pratique.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Se décoller du dossier pour pousser plus lourd → surcharge le bas du dos et retire la stabilité. Le dos doit rester en contact permanent avec le dossier.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Progression naturelle : machine → haltères assis → haltères debout. Avancé : Arnold press pour recruter les 3 faisceaux deltoïdes en un seul mouvement.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">05</div>
+            <div class="ex-info">
+              <div class="ex-name">Élévations latérales haltères</div>
+              <div class="ex-muscle">Deltoïdes médians (isolation)</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Légère inclinaison du buste vers l'avant (+15°), monter jusqu'à 90° strictement. Pouce légèrement vers le bas (rotation interne) pour isoler le faisceau médian et sortir le trapèze.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Utiliser l'élan du bas du dos (cheat). Réduis le poids et travaille en unilatéral avec appui si nécessaire pour éliminer totalement la compensation.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Imagine que tu vides l'eau d'un verre en montant (pouce vers le bas). Variante efficace : version assise sur banc incliné à 70° (élimine toute possibilité d'élan).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">06</div>
+            <div class="ex-info">
+              <div class="ex-name">Élévations frontales haltères</div>
+              <div class="ex-muscle">Deltoïdes antérieurs</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Monter un haltère à la fois (alterné) pour un meilleur contrôle. Bras quasi tendu, monter jusqu'à hauteur des épaules seulement. Descente en 3 secondes.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Monter trop haut (au-dessus des épaules) ou utiliser l'élan du buste → les trapèzes prennent le relais et l'isolation deltoïde est perdue.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Excentrique lent (3–4s) = clé de l'isolation. Plus efficace que de monter vite et redescendre vite. La phase de descente est souvent sous-exploitée.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">07</div>
+            <div class="ex-info">
+              <div class="ex-name">Extension triceps machine (ou poulie haute)</div>
+              <div class="ex-muscle">Triceps · Long chef · Vaste latéral</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">10–12</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Coudes fixes au corps. Extension complète en bas avec 1 seconde d'isométrie. La machine triceps guide parfaitement le mouvement pour les débutants.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Coudes qui s'écartent ou se soulèvent lors du retour → perte totale de l'isolation. Les coudes sont l'axe du mouvement, ils ne bougent pas.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Alternative : skull crusher haltères sur banc plat (long chef maximal). Ou extension triceps derrière la tête avec un seul haltère tenu à deux mains.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">08</div>
+            <div class="ex-info">
+              <div class="ex-name">Kickback triceps haltère</div>
+              <div class="ex-muscle">Triceps (isolation · finisher)</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Buste parallèle au sol, bras parallèle au sol (coude fixe), extension complète. En position haute, la contraction des triceps est maximale.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Coude trop bas (bras non parallèle au sol) → plage de mouvement réduite et contraction incomplète. Le coude doit être à hauteur du dos.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Supination légère du poignet (rotation vers l'extérieur) en extension complète — recrute davantage le chef latéral. Charge légère, qualité maximale.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SESSION 2 -->
+    <div class="session-panel s2" id="sp2">
+      <div class="s-meta">
+        <span class="s-badge">Dos · Biceps · Deltoïdes postérieurs</span>
+        <span class="s-badge">120 min · 8 exercices</span>
+        <span class="s-badge">~20 séries pull</span>
+      </div>
+      <div class="ex-list">
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Lat Pulldown machine (prise large)</div>
+              <div class="ex-muscle">Grand dorsal · Biceps · Rhomboïdes</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">8–10</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7–8</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Initier avec la dépression scapulaire (omoplates vers le bas) AVANT de plier les bras. Tirer vers le haut du sternum, légère inclinaison du buste vers l'arrière.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Tirer avec les bras directement sans activer le dos en premier → biceps épuisés, grand dorsal sous-stimulé. La dépression scapulaire est le vrai déclencheur du mouvement.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Imagine que tu "pousses tes coudes vers tes hanches" plutôt que de tirer la barre vers toi — connexion dorsale immédiate et spectaculaire.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">02</div>
+            <div class="ex-info">
+              <div class="ex-name">Rowing machine assise (Seated Cable Row)</div>
+              <div class="ex-muscle">Grand dorsal · Trapèzes moyens · Rhomboïdes · Biceps</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">10–12</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Dos droit, légère cambrure lombaire. Tirer la poignée vers le nombril, coudes le long du corps. Contraction scapulaire maximale en fin de tirage.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Se balancer en avant/arrière avec le buste → charge les lombaires et retire toute tension sur le dos. Buste fixe, seuls les bras et les omoplates bougent.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">En fin de tirage, maintiens la contraction 2 secondes en pinçant bien les omoplates l'une vers l'autre. C'est ce temps sous tension qui construit l'épaisseur du dos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">03</div>
+            <div class="ex-info">
+              <div class="ex-name">Rowing haltère unilatéral (appui banc)</div>
+              <div class="ex-muscle">Grand dorsal · Rhomboïdes · Biceps</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">10–12/côté</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Genou + main ipsilatéraux appuyés sur le banc. Tirer l'haltère vers la hanche (pas vers l'épaule). Légère rotation du buste en fin de mouvement pour amplifier la contraction.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Tirer avec le biceps (bras trop fléchi au départ) → dos sous-activé. Pense "coude vers la hanche" et non "main vers l'épaule".</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Excellent pour corriger les déséquilibres gauche/droite. Commence toujours par le côté faible et ne fais pas plus de reps du côté fort.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">04</div>
+            <div class="ex-info">
+              <div class="ex-name">Pull-over haltère (banc plat)</div>
+              <div class="ex-muscle">Grand dorsal · Grand rond · Dentelé antérieur</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Haltère tenu à deux mains au-dessus de la poitrine, descente en arc derrière la tête jusqu'à sentir l'étirement du dorsal. Bras presque tendus (légère flexion coudes).</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Plier trop les coudes → transforme l'exercice en développé. L'intérêt est l'allongement du grand dorsal en extension — préserve la légère flexion des coudes et ne la modifie pas.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Inspire profondément en descente (étirement de la cage thoracique), expire en forçant le retour. Cette respiration amplifie l'étirement et la contraction dorsale.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">05</div>
+            <div class="ex-info">
+              <div class="ex-name">Oiseau haltères / Reverse Pec Deck</div>
+              <div class="ex-muscle">Deltoïdes postérieurs · Rhomboïdes · Trapèzes</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Buste penché à 90°, bras légèrement fléchis et fixes. Élever en arc jusqu'à hauteur des épaules. Alternative machine : Reverse Pec Deck (poignées en face de soi).</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Poids trop lourd → élan du bas du dos. Descendre en dessous de 6–8kg si nécessaire. La connexion avec le deltoïde postérieur est subtile et se perd facilement.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Deltoïde postérieur = muscle invisible mais essentiel pour la posture et la santé des épaules. Le négliger = déséquilibre antérieur/postérieur à long terme.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">06</div>
+            <div class="ex-info">
+              <div class="ex-name">Face Pull machine / câble</div>
+              <div class="ex-muscle">Rotateurs externes · Deltoïdes post. · Trapèzes</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">15–20</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Câble à hauteur des yeux. Tirer vers le visage avec rotation externe → coudes hauts, mains derrière les oreilles en position finale. Contrôle total sur le retour.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Tirer trop bas (vers le menton/poitrine) → activer les triceps et non les rotateurs externes. La corde doit venir vers le front, pas vers la gorge.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Exercice de santé autant qu'esthétique. Protège les épaules à long terme. À réaliser à chaque séance Pull sans exception — ton futur moi te remerciera.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">07</div>
+            <div class="ex-info">
+              <div class="ex-name">Curl machine assise (biceps)</div>
+              <div class="ex-muscle">Biceps · Brachial antérieur</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">10–12</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">La machine stabilise les coudes — exploite ça. Supination complète du poignet en haut. Descente en 3 secondes (excentrique = 30% de masse musculaire en plus vs concentrique seul).</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Ne pas aller en extension complète en bas → plage de mouvement incomplète → moins d'étirement = moins de croissance. Extension complète à chaque rep.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Progression : machine → curl haltères incliné (étirement maximal) → curl araignée (spider curl) → curl concentration. Chaque variante cible un aspect différent du biceps.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">08</div>
+            <div class="ex-info">
+              <div class="ex-name">Curl marteau haltères (alterné)</div>
+              <div class="ex-muscle">Brachio-radial · Brachial · Biceps</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Prise neutre (pouce vers le haut) maintenue tout au long. Alterné = meilleur focus par côté. Coudes fixes, seuls les avant-bras bougent.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Supiner le poignet en haut → redevient un curl classique. La prise neutre doit rester stricte pour cibler le brachio-radial et l'épaisseur des avant-bras.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Excellent finisher bras — construit l'épaisseur entre biceps et coude visible à bras tendu. Idéal en supersérie avec le curl machine pour une fatigue totale des fléchisseurs.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SESSION 3 -->
+    <div class="session-panel s3" id="sp3">
+      <div class="s-meta">
+        <span class="s-badge">Quadriceps · Ischio · Fessiers · Core</span>
+        <span class="s-badge">120 min · 8 exercices</span>
+        <span class="s-badge">~22 séries jambes</span>
+      </div>
+      <div class="ex-list">
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">01</div>
+            <div class="ex-info">
+              <div class="ex-name">Leg Press 45°</div>
+              <div class="ex-muscle">Quadriceps · Fessiers · Ischio-jambiers</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">8–12</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">3'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7–8</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Pieds bas + rapprochés = quadriceps dominants. Pieds hauts + écartés = fessiers/ischio dominants. Ne jamais verrouiller les genoux en extension complète.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Laisser les genoux rentrer vers l'intérieur (valgus dynamique) sous la charge → stress ligamentaire élevé. Les genoux suivent la ligne des orteils en permanence.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Exercice roi des jambes à la machine — plus sécuritaire que le squat barre pour les débutants. Permet des charges importantes dès les premières semaines.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">02</div>
+            <div class="ex-info">
+              <div class="ex-name">Goblet Squat haltère</div>
+              <div class="ex-muscle">Quadriceps · Fessiers · Core · Adducteurs</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">10–12</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Intensité</div>
+                <div class="rpe-display"><div class="rpe-num">7</div><div class="rpe-suffix">RPE</div></div>
+                <div class="rpe-track"><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg on"></div><div class="rpe-seg"></div><div class="rpe-seg"></div><div class="rpe-seg"></div></div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Haltère tenu verticalement contre la poitrine (mains sous la tête). Le poids devant améliore le centrage et aide naturellement à garder le buste droit et les talons au sol.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Talons qui décollent → manque de mobilité des chevilles. Solution : caler les talons sur des disques surélevés temporairement jusqu'à amélioration de la mobilité.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Meilleur exercice d'apprentissage du squat. Progression : Goblet squat → Split squat haltères → Squat bulgare haltères (fessiers maximaux).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">03</div>
+            <div class="ex-info">
+              <div class="ex-name">Romanian Deadlift haltères (RDL)</div>
+              <div class="ex-muscle">Ischio-jambiers · Fessiers · Érecteurs spinaux</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">10–12</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Haltères le long des jambes. Hanches en arrière (hip hinge), dos droit, descendre jusqu'à sentir l'étirement profond des ischios. Genoux légèrement fléchis, jamais fléchis davantage.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Arrondir le bas du dos pour aller plus bas → compression discale. Descends seulement aussi loin que ta mobilité te le permet en gardant le dos plat.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Cherche le "brûlé" dans les ischios à mi-descente. L'étirement en position allongée est la clé de l'hypertrophie des ischio-jambiers. Si tu ne le sens pas, c'est ta mobilité qui bloque.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">04</div>
+            <div class="ex-info">
+              <div class="ex-name">Split Squat / Fentes statiques haltères</div>
+              <div class="ex-muscle">Fessiers · Quadriceps · Ischio · Équilibre</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">10/côté</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Pied avant à bonne distance (genou avant ne dépasse pas les orteils), buste vertical, descente contrôlée genou arrière à 2–3cm du sol. Haltères le long du corps.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Trop petit pas → genou avant en valgus et stress articulaire. La distance entre les deux pieds doit permettre au tibia avant de rester vertical à 90° du sol.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Progression : split squat statique → fentes marchées → squat bulgare haltères (pied arrière surélevé sur banc = version avancée, activation fessière maximale).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">05</div>
+            <div class="ex-info">
+              <div class="ex-name">Leg Curl machine (couché)</div>
+              <div class="ex-muscle">Ischio-jambiers · Biceps fémoral · Semi-tendineux</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'30</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Hanche plaquée contre le coussin tout le mouvement. Contraction maximale en haut (genou à 90°+), descente en 3 secondes. Ne pas soulever les fesses.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Fesses qui se soulèvent pour "aider" → perd l'isolation ischios, active les fessiers et lombaires. Charge réduite + hanche plaquée = efficacité maximale.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Pour intensifier : pointure des pieds légèrement vers l'extérieur → recrute davantage le biceps fémoral. Vers l'intérieur → semi-tendineux et semi-membraneux.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">06</div>
+            <div class="ex-info">
+              <div class="ex-name">Hip Thrust haltère / machine</div>
+              <div class="ex-muscle">Grand fessier (isolation maximale)</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">4</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">12–15</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">2'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Omoplates appuyées sur le banc, haltère sur les hanches, pieds à plat. Pousser avec les talons. En haut : bassin horizontal, serrer les fessiers 2 secondes. Genoux écartés.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Hyper-extension lombaire en position haute → bas du dos travaille à la place des fessiers. Le bassin doit rester neutre — pense "pousser le plafond avec les hanches".</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Exercice scientifiquement le plus efficace pour le grand fessier. Progression rapide possible. Variante machine hip thrust = encore plus stable et surcharge plus facile.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">07</div>
+            <div class="ex-info">
+              <div class="ex-name">Planche dynamique + Ab Wheel</div>
+              <div class="ex-muscle">Core complet · Transverse · Obliques · Érecteurs</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">45–60s</div><div class="spec-l">Durée</div></div>
+              <div class="spec"><div class="spec-v">1'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Planche : alignement tête-épaules-hanches-talons. Ab wheel : à genoux au départ, extension progressive (augmenter l'amplitude semaine après semaine). Gainage actif en permanence.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Hanches trop hautes ou basses en planche → perd l'activation du transverse. Durée raccourcie avec position parfaite > durée longue avec compensation.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Progression : planche → planche avec ext. bras alterné → ab wheel à genoux → ab wheel en extension complète (niveau avancé). Ne pas brûler les étapes.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ex-row" onclick="toggle(this)">
+          <div class="ex-top">
+            <div class="ex-idx">08</div>
+            <div class="ex-info">
+              <div class="ex-name">Crunch machine + Relevé de jambes suspendu</div>
+              <div class="ex-muscle">Droit abdominal · Transverse · Hip flexors</div>
+            </div>
+            <div class="ex-specs">
+              <div class="spec"><div class="spec-v">3</div><div class="spec-l">Séries</div></div>
+              <div class="spec"><div class="spec-v">15–20</div><div class="spec-l">Reps</div></div>
+              <div class="spec"><div class="spec-v">1'</div><div class="spec-l">Repos</div></div>
+            </div>
+            <svg class="ex-toggle" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="ex-coaching">
+            <div class="coaching-inner">
+              <div class="c-block">
+                <div class="c-label">Conseil technique</div>
+                <div class="c-text">Crunch machine : la flexion part de l'ombilic vers le sternum (flexion vertébrale), pas un tirage d'épaules. Supersérie possible avec relevé de jambes pour un finisher intense.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Erreur fréquente</div>
+                <div class="c-text">Tirer avec les bras sur la machine crunch → ce sont les biceps qui travaillent. Les bras ne sont que des points d'appui, le mouvement vient du ventre.</div>
+              </div>
+              <div class="c-block">
+                <div class="c-label">Connexion musculaire</div>
+                <div class="c-text">Les abdominaux répondent bien à la résistance progressive (machine) ET aux hautes reps. Combiner les deux dans une même séance maximise le stimulus hypertrophique.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROGRESSION -->
+<div class="hr"></div>
+<section class="sec-wrap">
+  <div class="container">
+    <p class="sec-eyebrow">02 · Surcharge progressive</p>
+    <h2 class="sec-title">Plan 6 semaines</h2>
+
+    <div class="prog-grid">
+      <div class="prog-card">
+        <div class="prog-week">Semaines 1–2</div>
+        <div class="prog-title">Fondations</div>
+        <div class="prog-items">
+          <div class="prog-item"><span class="prog-arrow">→</span>RPE 6–7 max · Trouver les charges de travail</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>3 séries × 12 reps sur tous les exercices</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Maîtrise technique avant tout</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Journal de séance obligatoire</div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-week">Semaines 3–4</div>
+        <div class="prog-title">Volume</div>
+        <div class="prog-items">
+          <div class="prog-item"><span class="prog-arrow">→</span>+1 série sur les composés → 4 séries</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>RPE cible 7–8 · 1–2 reps en réserve</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Si toutes reps faciles → +2,5–5kg semaine suivante</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Excentrique lent 3s sur machines</div>
+        </div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-week">Semaine 5</div>
+        <div class="prog-title">Intensification</div>
+        <div class="prog-items">
+          <div class="prog-item"><span class="prog-arrow">→</span>RPE 8–9 · Charges maximales contrôlées</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Drop set sur le dernier exercice / séance</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Rest-pause sur biceps et triceps</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Pause isométrique 2s en contraction peak</div>
+        </div>
+      </div>
+      <div class="prog-card deload">
+        <div class="prog-week">Semaine 6</div>
+        <div class="prog-title">Deload ⚡</div>
+        <div class="prog-items">
+          <div class="prog-item"><span class="prog-arrow">→</span>–40–50% du volume · Mêmes charges</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>RPE max 6 · Aucune sensation de brûlure</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Priorité : sommeil, nutrition, mobilité</div>
+          <div class="prog-item"><span class="prog-arrow">→</span>Sem. 7 : reprendre avec charges S5 +2,5–5kg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROTOCOLS -->
+<div class="hr"></div>
+<section class="sec-wrap">
+  <div class="container">
+    <p class="sec-eyebrow">03 · Protocoles</p>
+    <h2 class="sec-title">Échauffement & Récupération</h2>
+
+    <div class="proto-grid">
+      <div class="proto-card">
+        <div class="proto-ico">🔥</div>
+        <div class="proto-title">Protocole Échauffement</div>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-num">01</div><div>5–8 min cardio léger (vélo elliptique, rameur) — température corporelle +1°C = gains de force +3%</div></div>
+          <div class="proto-item"><div class="proto-num">02</div><div>Mobilité articulaire dynamique : circles épaules, hip circles, leg swings (2 min ciblés selon la séance)</div></div>
+          <div class="proto-item"><div class="proto-num">03</div><div>2 séries d'activation sur la machine/haltère du 1er exercice : 40% puis 60% de la charge de travail</div></div>
+          <div class="proto-item"><div class="proto-num">04</div><div>Bandes élastiques avant Push : rotation externe épaules (2×15 reps) pour activer les rotateurs</div></div>
+          <div class="proto-item"><div class="proto-num">05</div><div>Activation fessière avant Legs : clamshells ou abducteur machine (2×20 reps léger) pour prévenir le valgus genou</div></div>
+        </div>
+      </div>
+      <div class="proto-card">
+        <div class="proto-ico">🌙</div>
+        <div class="proto-title">Récupération Optimale</div>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-num">01</div><div>7–9h de sommeil / nuit — 90% de la GH sécrétée pendant le sommeil profond. La récupération se fait là.</div></div>
+          <div class="proto-item"><div class="proto-num">02</div><div>48h minimum entre deux séances sollicitant les mêmes muscles (respect du planning L/M/V)</div></div>
+          <div class="proto-item"><div class="proto-num">03</div><div>Étirements statiques post-séance : 20–30 sec par groupe musculaire travaillé, surtout ischio et pecs</div></div>
+          <div class="proto-item"><div class="proto-num">04</div><div>Marche quotidienne 20–30 min — réduit l'inflammation systémique et améliore la circulation lymphatique</div></div>
+          <div class="proto-item"><div class="proto-num">05</div><div>Gestion du cortisol — le stress chronique est le principal antagoniste de l'hypertrophie. Respiration, sommeil, régularité.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUTRITION -->
+<div class="hr"></div>
+<section class="sec-wrap" style="padding-bottom: 80px;">
+  <div class="container">
+    <p class="sec-eyebrow">04 · Nutrition</p>
+    <h2 class="sec-title">Carburant pour croître</h2>
+
+    <div class="macro-row">
+      <div class="macro-cell">
+        <div class="macro-val">+300<span class="macro-unit"> kcal</span></div>
+        <div class="macro-name">Surplus calorique</div>
+        <div class="macro-note">Au-dessus maintenance. Prise de masse lean.</div>
+      </div>
+      <div class="macro-cell">
+        <div class="macro-val">1,8–2,2<span class="macro-unit"> g/kg</span></div>
+        <div class="macro-name">Protéines / jour</div>
+        <div class="macro-note">Répartis sur 4–5 repas · Max 40g/repas</div>
+      </div>
+      <div class="macro-cell">
+        <div class="macro-val">4–6<span class="macro-unit"> g/kg</span></div>
+        <div class="macro-name">Glucides / jour</div>
+        <div class="macro-note">Charger autour des séances</div>
+      </div>
+      <div class="macro-cell">
+        <div class="macro-val">0,8–1<span class="macro-unit"> g/kg</span></div>
+        <div class="macro-name">Lipides / jour</div>
+        <div class="macro-note">Essentiels pour la testostérone</div>
+      </div>
+    </div>
+
+    <div class="proto-grid" style="margin-top:16px">
+      <div class="proto-card">
+        <div class="proto-ico">⏰</div>
+        <div class="proto-title">Timing Nutritionnel</div>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-num">PRÉ</div><div>30–90 min avant : glucides complexes + protéines (flocons d'avoine + whey, ou riz + poulet). Éviter les lipides en excès.</div></div>
+          <div class="proto-item"><div class="proto-num">POST</div><div>Dans les 2h : 30–40g protéines + glucides. Whey + banane ou riz + œufs. La fenêtre anabolique est large mais réelle.</div></div>
+          <div class="proto-item"><div class="proto-num">NUIT</div><div>Caséine avant le coucher (fromage blanc, yaourt grec) — digestion lente sur 6–8h pendant le sommeil.</div></div>
+        </div>
+      </div>
+      <div class="proto-card">
+        <div class="proto-ico">💊</div>
+        <div class="proto-title">Compléments Prioritaires</div>
+        <div class="proto-list">
+          <div class="proto-item"><div class="proto-num">★★★</div><div>Créatine monohydrate : 3–5g/jour en continu. +5–10% de force dès 4 semaines. Le complément le mieux étudié qui existe.</div></div>
+          <div class="proto-item"><div class="proto-num">★★★</div><div>Whey protéine : si difficile d'atteindre l'apport protéique. 1–2 shakes/jour au maximum.</div></div>
+          <div class="proto-item"><div class="proto-num">★★☆</div><div>Vitamine D3 : 2000–4000 UI/jour. Rôle clé dans la testostérone et la récupération, surtout en hiver.</div></div>
+          <div class="proto-item"><div class="proto-num">★★☆</div><div>Oméga-3 : 2–3g EPA+DHA/jour. Anti-inflammatoire, améliore la synthèse protéique et la récupération articulaire.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>PROGRAMME HYPERTROPHIE · HALTÈRES & MACHINES · DÉBUTANT → INTERMÉDIAIRE · 6 SEMAINES</p>
+  <p style="margin-top:8px">Consulte un médecin avant de débuter tout programme d'entraînement intensif.</p>
+</footer>
+
+<script>
+  function showS(n) {
+    document.querySelectorAll('.session-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.s-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('sp' + n).classList.add('active');
+    document.querySelector('[data-s="' + n + '"]').classList.add('active');
+  }
+
+  function toggle(row) {
+    const open = row.classList.contains('open');
+    row.closest('.ex-list').querySelectorAll('.ex-row').forEach(r => r.classList.remove('open'));
+    if (!open) row.classList.add('open');
+  }
+</script>
+</body>
+</html>
