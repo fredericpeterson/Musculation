@@ -36,6 +36,42 @@
       min-height: 100vh;
     }
 
+
+    /* ── API Key Screen ── */
+    #apiScreen {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .api-box {
+      width: 100%; max-width: 420px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      position: relative; overflow: hidden;
+    }
+    .api-box::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .api-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px; letter-spacing: .05em; margin-bottom: 6px;
+    }
+    .api-title span { color: var(--accent); }
+    .api-sub {
+      font-size: 13px; color: var(--muted);
+      line-height: 1.6; margin-bottom: 24px;
+    }
+    .api-sub a { color: var(--accent); }
+    .api-note {
+      font-size: 11px; color: var(--muted);
+      margin-top: 12px; line-height: 1.5;
+    }
+
     /* ── Header ── */
     .hero {
       padding: 48px 24px 36px;
@@ -216,6 +252,122 @@
       margin-top: 16px;
     }
 
+    /* ── Rendu programme stylé ── */
+    .prog-result { margin-top: 0; }
+    .prog-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .prog-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 6vw, 40px);
+      line-height: 1.05;
+      letter-spacing: .03em;
+      color: var(--text);
+    }
+    .prog-name span { color: var(--accent); }
+    .prog-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .prog-chip {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 20px;
+      background: rgba(212,168,67,.1);
+      color: var(--accent); border: 1px solid rgba(212,168,67,.2);
+    }
+    .prog-chip.dark {
+      background: rgba(255,255,255,.05);
+      color: var(--muted); border-color: var(--border);
+    }
+    .day-card {
+      background: #111;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .day-card-head {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px;
+      background: rgba(212,168,67,.06);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .day-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px; letter-spacing: .1em;
+      color: var(--accent); min-width: 20px;
+    }
+    .day-title-text {
+      font-size: 13px; font-weight: 500;
+      color: var(--text); flex: 1;
+    }
+    .day-toggle {
+      font-size: 10px; color: var(--muted);
+      transition: transform .2s;
+    }
+    .day-card.open .day-toggle { transform: rotate(180deg); }
+    .day-body { padding: 4px 0; display: none; }
+    .day-card.open .day-body { display: block; }
+    .ex-row {
+      display: flex; align-items: center;
+      gap: 10px; padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.03);
+    }
+    .ex-row:last-child { border-bottom: none; }
+    .ex-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); opacity: .5; flex-shrink: 0;
+    }
+    .ex-name-text {
+      font-size: 13px; color: #ddd; flex: 1; line-height: 1.3;
+    }
+    .ex-tag {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .06em; white-space: nowrap;
+      padding: 3px 9px; border-radius: 4px;
+      background: rgba(255,255,255,.06);
+      color: #aaa;
+    }
+    .ex-tag.accent {
+      background: rgba(212,168,67,.12);
+      color: var(--accent);
+    }
+    .tips-section {
+      background: rgba(212,168,67,.05);
+      border: 1px solid rgba(212,168,67,.15);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .tips-title {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 12px;
+    }
+    .tip-row {
+      display: flex; gap: 10px;
+      padding: 6px 0;
+      font-size: 12px; color: #bbb;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .tip-row:last-child { border-bottom: none; }
+    .tip-icon { flex-shrink: 0; color: var(--accent); font-size: 13px; margin-top: 1px; }
+    .prog-actions {
+      display: flex; gap: 8px;
+      margin-top: 20px; flex-wrap: wrap;
+    }
+    .prog-raw {
+      font-size: 12px; line-height: 1.75;
+      color: #b0b0b0; white-space: pre-wrap;
+      padding: 16px;
+      background: #111; border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-top: 12px; display: none;
+    }
+    .prog-raw.visible { display: block; }
+
     /* ── Badge ── */
     .badge {
       display: inline-block;
@@ -339,11 +491,31 @@
 </head>
 <body>
 
+
+  <!-- Écran clé API -->
+  <div id="apiScreen" style="display:none;">
+    <div class="api-box">
+      <div class="api-title">Agent IA<br><span>Musculation</span></div>
+      <p class="api-sub">
+        Entre ta clé API Anthropic pour activer la génération de programmes.<br>
+        Elle est sauvegardée localement sur ton appareil.<br><br>
+        Obtenir une clé gratuite → <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com</a>
+      </p>
+      <div class="form-group">
+        <label>Clé API Anthropic</label>
+        <input type="password" id="apiKeyInput" placeholder="sk-ant-..." autocomplete="off">
+      </div>
+      <button class="btn btn-primary" onclick="saveApiKey()">Accéder à l'agent</button>
+      <p class="api-note">🔒 Ta clé est stockée uniquement dans ton navigateur et envoyée directement à api.anthropic.com.</p>
+    </div>
+  </div>
+
   <!-- Hero -->
   <div class="hero">
     <div class="hero-badge">La Bibliothèque de l'Ambitieux</div>
     <h1>Agent IA<br><span>Musculation</span></h1>
     <p>Programmes personnalisés par intelligence artificielle.<br>Tracker de progression. Variantes adaptées.</p>
+    <span onclick="document.getElementById('apiScreen').style.display='flex'" style="display:inline-block;margin-top:12px;font-size:11px;color:var(--muted);cursor:pointer;border-bottom:1px dashed var(--faint);letter-spacing:.05em;">🔑 Changer de clé API</span>
   </div>
 
   <!-- App -->
@@ -429,8 +601,30 @@
     let state = {
       programs: JSON.parse(localStorage.getItem('gym_programs')) || [],
       progressions: JSON.parse(localStorage.getItem('gym_progressions')) || [],
-      currentProgram: null
+      currentProgram: null,
+      apiKey: localStorage.getItem('gym_api_key') || ''
     };
+
+    // Vérification clé API au démarrage
+    function initApp() {
+      if (!state.apiKey) {
+        document.getElementById('apiScreen').style.display = 'flex';
+      }
+    }
+
+    function saveApiKey() {
+      const key = document.getElementById('apiKeyInput').value.trim();
+      if (!key.startsWith('sk-')) {
+        alert('Clé invalide. Elle doit commencer par sk-');
+        return;
+      }
+      state.apiKey = key;
+      localStorage.setItem('gym_api_key', key);
+      document.getElementById('apiScreen').style.display = 'none';
+    }
+
+    // Lancer l'init
+    initApp();
 
     function switchTab(tab) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -475,7 +669,12 @@ Sois précis, pragmatique, adapté au niveau.`;
       try {
         const response = await fetch('https://api.anthropic.com/v1/messages', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': state.apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
           body: JSON.stringify({
             model: 'claude-sonnet-4-20250514',
             max_tokens: 2000,
@@ -483,7 +682,10 @@ Sois précis, pragmatique, adapté au niveau.`;
           })
         });
 
-        if (!response.ok) throw new Error('Erreur API ' + response.status);
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error?.message || 'Erreur API ' + response.status);
+        }
         const data = await response.json();
         const programText = data.content[0].text;
 
@@ -509,20 +711,144 @@ Sois précis, pragmatique, adapté au niveau.`;
     }
 
     function renderProgramResult(program) {
+      const parsed = parseProgram(program.content);
       document.getElementById('generator').innerHTML = `
-        <div class="card" style="border-color:rgba(212,168,67,0.2);">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-            <div class="card-title">Programme généré</div>
-            <div class="badge">${program.params.goal}</div>
+        <div class="prog-result">
+          <div class="prog-header">
+            <div class="prog-name">${parsed.title || 'Mon<br><span>Programme</span>'}</div>
           </div>
-          <div class="card-meta">${program.date} — ${program.params.level} — ${program.params.days}j/sem</div>
-          <div class="program-output">${escapeHtml(program.content)}</div>
-          <div class="card-actions">
-            <button class="btn btn-sm" onclick="resetGenerator()">Nouveau</button>
+          <div class="prog-chips">
+            <span class="prog-chip">${program.params.goal}</span>
+            <span class="prog-chip">${program.params.level}</span>
+            <span class="prog-chip">${program.params.days}j / semaine</span>
+            <span class="prog-chip dark">${program.date}</span>
+          </div>
+
+          ${parsed.days.map((day, i) => `
+            <div class="day-card open" id="day${i}">
+              <div class="day-card-head" onclick="toggleDay('day${i}')">
+                <span class="day-num">J${i+1}</span>
+                <span class="day-title-text">${escH(day.title)}</span>
+                <span class="day-toggle">▼</span>
+              </div>
+              <div class="day-body">
+                ${day.exercises.map(ex => `
+                  <div class="ex-row">
+                    <div class="ex-dot"></div>
+                    <div class="ex-name-text">${escH(ex.name)}</div>
+                    ${ex.sets ? `<span class="ex-tag accent">${escH(ex.sets)}</span>` : ''}
+                    ${ex.rest ? `<span class="ex-tag">${escH(ex.rest)}</span>` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+
+          ${parsed.tips.length ? `
+            <div class="tips-section">
+              <div class="tips-title">Conseils clés</div>
+              ${parsed.tips.map(t => `
+                <div class="tip-row">
+                  <span class="tip-icon">→</span>
+                  <span>${escH(t)}</span>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+
+          <div class="prog-actions">
+            <button class="btn btn-sm" onclick="toggleRaw()">Voir texte brut</button>
             <button class="btn btn-sm" onclick="switchTab('tracker')">Tracker</button>
+            <button class="btn btn-sm" onclick="resetGenerator()">Nouveau</button>
           </div>
+          <div class="prog-raw" id="progRaw">${escH(program.content)}</div>
         </div>
       `;
+    }
+
+    function toggleDay(id) {
+      document.getElementById(id).classList.toggle('open');
+    }
+
+    function toggleRaw() {
+      document.getElementById('progRaw').classList.toggle('visible');
+    }
+
+    function parseProgram(text) {
+      const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+      let title = '';
+      const days = [];
+      const tips = [];
+      let currentDay = null;
+      let inTips = false;
+
+      // Patterns
+      const dayPat = /^(jour\s*\d+|day\s*\d+|séance\s*\d+|s\d+\s*[:\-–]|lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche)/i;
+      const tipPat = /^(conseil|tip|note|important|remarque|principe)/i;
+      const exPat = /^[-*•\d+\.]\s*/;
+      const setsPat = /(\d+\s*[x×]\s*\d+[-–]?\d*|\d+\s*séries?\s*[x×de]?\s*\d+[-–]?\d*\s*(?:reps?|répétitions?)?)/i;
+      const restPat = /(\d+\s*(?:sec|s|min|minutes?)\s*(?:de\s*)?(?:repos|rest|récup))/i;
+      const headerPat = /^#{1,3}\s+/;
+
+      for (const line of lines) {
+        const clean = line.replace(headerPat, '').replace(/\*\*/g, '').trim();
+
+        // Titre principal (première ligne avant tout jour)
+        if (!title && !days.length && !clean.match(dayPat) && clean.length > 3 && clean.length < 80) {
+          title = clean.replace(/programme[:\s]*/i, '').trim();
+          title = title.split('\n')[0].trim();
+          continue;
+        }
+
+        // Début section conseils
+        if (clean.match(tipPat) || clean.match(/^#+\s*(conseil|tip|principe|à retenir)/i)) {
+          inTips = true;
+          currentDay = null;
+          continue;
+        }
+
+        // Nouveau jour
+        if (clean.match(dayPat)) {
+          inTips = false;
+          currentDay = { title: clean.replace(/^#+\s*/, ''), exercises: [] };
+          days.push(currentDay);
+          continue;
+        }
+
+        // Exercice dans un jour
+        if (currentDay && clean.match(exPat)) {
+          const name = clean.replace(exPat, '').split(/[:–\-]/)[0].trim();
+          const setsMatch = clean.match(setsPat);
+          const restMatch = clean.match(restPat);
+          if (name && name.length > 2) {
+            currentDay.exercises.push({
+              name: name.replace(/\*\*/g, ''),
+              sets: setsMatch ? setsMatch[0] : '',
+              rest: restMatch ? restMatch[0] : ''
+            });
+          }
+          continue;
+        }
+
+        // Conseils
+        if (inTips && clean.match(exPat)) {
+          const tip = clean.replace(exPat, '').trim();
+          if (tip.length > 5) tips.push(tip);
+        }
+      }
+
+      // Fallback si aucun jour parsé : créer un seul bloc
+      if (!days.length) {
+        const exLines = lines.filter(l => l.match(exPat));
+        if (exLines.length) {
+          days.push({
+            title: 'Programme',
+            exercises: exLines.map(l => ({ name: l.replace(exPat, '').split(/[:×x]/)[0].trim(), sets: '', rest: '' }))
+          });
+        }
+      }
+
+      return { title, days, tips };
     }
 
     function resetGenerator() {
@@ -689,19 +1015,27 @@ Sois précis, pragmatique, adapté au niveau.`;
       try {
         const response = await fetch('https://api.anthropic.com/v1/messages', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': state.apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
           body: JSON.stringify({
             model: 'claude-sonnet-4-20250514',
             max_tokens: 1200,
             messages: [{ role: 'user', content: prompt }]
           })
         });
-        if (!response.ok) throw new Error('Erreur API');
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.error?.message || 'Erreur API ' + response.status);
+        }
         const data = await response.json();
         document.getElementById('variantResult').innerHTML = `
           <div class="card" style="margin-top:20px;">
             <div class="card-title">Variante générée</div>
-            <div class="program-output">${escapeHtml(data.content[0].text)}</div>
+            ${renderVariantHtml(data.content[0].text)}
           </div>
         `;
       } catch (err) {
@@ -711,6 +1045,40 @@ Sois précis, pragmatique, adapté au niveau.`;
         btn.innerHTML = 'Générer la variante';
       }
     }
+
+    function renderVariantHtml(text) {
+      const parsed = parseProgram(text);
+      if (!parsed.days.length) return `<div class="prog-raw visible">${escH(text)}</div>`;
+      return `
+        ${parsed.days.map((day, i) => `
+          <div class="day-card open" id="vday${i}">
+            <div class="day-card-head" onclick="toggleDay('vday${i}')">
+              <span class="day-num">J${i+1}</span>
+              <span class="day-title-text">${escH(day.title)}</span>
+              <span class="day-toggle">▼</span>
+            </div>
+            <div class="day-body">
+              ${day.exercises.map(ex => `
+                <div class="ex-row">
+                  <div class="ex-dot"></div>
+                  <div class="ex-name-text">${escH(ex.name)}</div>
+                  ${ex.sets ? `<span class="ex-tag accent">${escH(ex.sets)}</span>` : ''}
+                  ${ex.rest ? `<span class="ex-tag">${escH(ex.rest)}</span>` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+        ${parsed.tips.length ? `
+          <div class="tips-section">
+            <div class="tips-title">Conseils clés</div>
+            ${parsed.tips.map(t => `<div class="tip-row"><span class="tip-icon">→</span><span>${escH(t)}</span></div>`).join('')}
+          </div>
+        ` : ''}
+      `;
+    }
+
+    function escH(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
 
     function escapeHtml(text) {
       const d = document.createElement('div');
