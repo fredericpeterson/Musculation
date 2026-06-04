@@ -1,0 +1,26 @@
+{
+  "name": "Agent IA Musculation",
+  "short_name": "Musculation IA",
+  "description": "Programmes de musculation personnalisés par intelligence artificielle",
+  "start_url": "/musculation/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#d4a843",
+  "orientation": "portrait",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "fitness", "sports"]
+}
