@@ -241,6 +241,79 @@
     }
     .card-actions { display: flex; gap: 8px; margin-top: 16px; }
 
+
+    /* ── Couleurs par jour ── */
+    :root {
+      --c0: #e85d28; /* orange-rouge */
+      --c1: #4a9eff; /* bleu */
+      --c2: #50c878; /* vert */
+      --c3: #c678e8; /* violet */
+      --c4: #e8c050; /* jaune doré */
+      --c5: #e85090; /* rose */
+      --c6: #50e8d4; /* cyan */
+    }
+    .day-card[data-ci="0"] .day-card-head { border-left: 3px solid var(--c0); }
+    .day-card[data-ci="1"] .day-card-head { border-left: 3px solid var(--c1); }
+    .day-card[data-ci="2"] .day-card-head { border-left: 3px solid var(--c2); }
+    .day-card[data-ci="3"] .day-card-head { border-left: 3px solid var(--c3); }
+    .day-card[data-ci="4"] .day-card-head { border-left: 3px solid var(--c4); }
+    .day-card[data-ci="5"] .day-card-head { border-left: 3px solid var(--c5); }
+    .day-card[data-ci="6"] .day-card-head { border-left: 3px solid var(--c6); }
+    .day-card[data-ci="0"] .day-num { color: var(--c0); }
+    .day-card[data-ci="1"] .day-num { color: var(--c1); }
+    .day-card[data-ci="2"] .day-num { color: var(--c2); }
+    .day-card[data-ci="3"] .day-num { color: var(--c3); }
+    .day-card[data-ci="4"] .day-num { color: var(--c4); }
+    .day-card[data-ci="5"] .day-num { color: var(--c5); }
+    .day-card[data-ci="6"] .day-num { color: var(--c6); }
+    .day-card[data-ci="0"] .day-body .ex-dot { background: var(--c0); opacity: .6; }
+    .day-card[data-ci="1"] .day-body .ex-dot { background: var(--c1); opacity: .6; }
+    .day-card[data-ci="2"] .day-body .ex-dot { background: var(--c2); opacity: .6; }
+    .day-card[data-ci="3"] .day-body .ex-dot { background: var(--c3); opacity: .6; }
+    .day-card[data-ci="4"] .day-body .ex-dot { background: var(--c4); opacity: .6; }
+    .day-card[data-ci="5"] .day-body .ex-dot { background: var(--c5); opacity: .6; }
+    .day-card[data-ci="6"] .day-body .ex-dot { background: var(--c6); opacity: .6; }
+    .day-card[data-ci="0"].open .day-card-head { background: rgba(232,93,40,.07); }
+    .day-card[data-ci="1"].open .day-card-head { background: rgba(74,158,255,.07); }
+    .day-card[data-ci="2"].open .day-card-head { background: rgba(80,200,120,.07); }
+    .day-card[data-ci="3"].open .day-card-head { background: rgba(198,120,232,.07); }
+    .day-card[data-ci="4"].open .day-card-head { background: rgba(232,192,80,.07); }
+    .day-card[data-ci="5"].open .day-card-head { background: rgba(232,80,144,.07); }
+    .day-card[data-ci="6"].open .day-card-head { background: rgba(80,232,212,.07); }
+
+    /* Chips colorées */
+    .prog-chip:nth-child(1) { background: rgba(232,93,40,.12); color: #e85d28; border-color: rgba(232,93,40,.25); }
+    .prog-chip:nth-child(2) { background: rgba(74,158,255,.12); color: #4a9eff; border-color: rgba(74,158,255,.25); }
+    .prog-chip:nth-child(3) { background: rgba(80,200,120,.12); color: #50c878; border-color: rgba(80,200,120,.25); }
+
+    /* Badge ex-tag coloré */
+    .ex-tag.accent { background: rgba(212,168,67,.15); color: #d4a843; border: 1px solid rgba(212,168,67,.3); border-radius: 5px; }
+    .ex-tag { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 5px; }
+
+    /* Tips avec icône colorée */
+    .tip-icon { color: var(--accent); font-weight: 700; }
+
+    /* Stat cards colorées */
+    .stat-card:nth-child(1) .stat-value { color: #4a9eff; }
+    .stat-card:nth-child(2) .stat-value { color: #50c878; }
+
+    /* Tracker ex-card bord coloré au focus */
+    .tracker-input-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(212,168,67,.15); }
+
+    /* Hero gradient subtil */
+    .hero h1 span { 
+      background: linear-gradient(135deg, #d4a843, #e85d28);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .api-title span {
+      background: linear-gradient(135deg, #d4a843, #e85d28);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
     /* ── Program Output ── */
     .program-output {
       font-size: 13px;
@@ -718,27 +791,28 @@ Paramètres :
 - Objectif : ${goal}
 ${preferences ? `- Notes : ${preferences}` : ''}
 
-Réponds UNIQUEMENT avec un objet JSON valide, sans texte avant ni après, sans backticks, sans markdown. Structure exacte :
-{
-  "name": "Nom court du programme",
-  "frequency": "Ex : 4 jours/semaine – Repos lundi, mercredi, vendredi",
-  "days": [
-    {
-      "label": "Jour 1",
-      "focus": "Ex : Push – Pectoraux / Épaules / Triceps",
-      "exercises": [
-        {
-          "name": "Nom de l'exercice",
-          "sets": "4",
-          "reps": "8-10",
-          "rest": "90 sec",
-          "notes": "Conseil technique court (optionnel)"
-        }
-      ]
-    }
-  ],
-  "tips": ["Conseil 1", "Conseil 2", "Conseil 3"]
-}`;
+Réponds UNIQUEMENT avec ce format balisé exact, sans texte avant ni après :
+
+##NOM##
+[Nom court du programme]
+##FREQ##
+[Fréquence, ex: 4 jours/semaine - repos mardi, jeudi, dimanche]
+##JOUR##
+[Jour 1 | Focus musculaire, ex: Push - Pectoraux / Épaules / Triceps]
+##EX##
+[Nom exercice | séries | reps | repos | note technique courte]
+##EX##
+[Nom exercice | séries | reps | repos | note technique courte]
+##JOUR##
+[Jour 2 | Focus musculaire]
+##EX##
+[Nom exercice | séries | reps | repos | note technique courte]
+##TIPS##
+[Conseil 1]
+[Conseil 2]
+[Conseil 3]
+
+Remplace les crochets par les vraies valeurs. Autant de ##JOUR## et ##EX## que nécessaire.`;
 
       try {
         const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -763,13 +837,12 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans texte avant ni après, sans 
         const data = await response.json();
         const rawText = data.content[0].text;
 
-        // Parser le JSON retourné par Claude
+        // Parser le format balisé
         let structured = null;
         try {
-          const clean = rawText.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
-          structured = JSON.parse(clean);
+          structured = parseBalisedFormat(rawText);
         } catch(e) {
-          // Si le JSON échoue, fallback texte brut
+          console.warn('Parse failed:', e.message);
           structured = null;
         }
 
@@ -795,43 +868,130 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans texte avant ni après, sans 
       }
     }
 
+    function parseBalisedFormat(text) {
+      const result = { name: '', frequency: '', days: [], tips: [] };
+      let currentDay = null;
+
+      // Nettoyer le texte
+      const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+      let mode = null;
+      for (const line of lines) {
+        if (line === '##NOM##') { mode = 'nom'; continue; }
+        if (line === '##FREQ##') { mode = 'freq'; continue; }
+        if (line === '##JOUR##') { mode = 'jour'; continue; }
+        if (line === '##EX##') { mode = 'ex'; continue; }
+        if (line === '##TIPS##') { mode = 'tips'; continue; }
+
+        // Ignorer les lignes de balise non reconnues
+        if (line.startsWith('##')) continue;
+
+        const clean = line.replace(/^\[|\]$/g, '').trim();
+        if (!clean) continue;
+
+        if (mode === 'nom') { result.name = clean; mode = null; }
+        else if (mode === 'freq') { result.frequency = clean; mode = null; }
+        else if (mode === 'jour') {
+          const parts = clean.split('|');
+          currentDay = { label: (parts[0] || '').trim(), focus: (parts[1] || '').trim(), exercises: [] };
+          result.days.push(currentDay);
+        }
+        else if (mode === 'ex' && currentDay) {
+          const parts = clean.split('|');
+          currentDay.exercises.push({
+            name:  (parts[0] || '').trim(),
+            sets:  (parts[1] || '').trim(),
+            reps:  (parts[2] || '').trim(),
+            rest:  (parts[3] || '').trim(),
+            notes: (parts[4] || '').trim()
+          });
+        }
+        else if (mode === 'tips') {
+          const tip = clean.replace(/^[-*•]\s*/, '');
+          if (tip) result.tips.push(tip);
+        }
+      }
+
+      // Valider
+      if (!result.days.length) return null;
+      return result;
+    }
+
     function renderProgramResult(program) {
       let s = program.structured;
 
-      // Fallback si JSON indisponible
-      if (!s || !s.days) {
-        s = parseProgram(program.content);
+      // Fallback : parseProgram retourne {title, days:[{title, exercises:[{name,sets,rest}]}], tips}
+      // On normalise pour avoir la même structure que le JSON
+      if (!s || !s.days || !s.days.length) {
+        const parsed = parseProgram(program.content);
+        if (parsed.days && parsed.days.length) {
+          s = {
+            name: parsed.title || program.params.goal,
+            frequency: program.params.days + ' jours / semaine',
+            days: parsed.days.map((d, i) => ({
+              label: 'Jour ' + (i + 1),
+              focus: d.title || '',
+              exercises: (d.exercises || []).map(ex => ({
+                name: ex.name,
+                sets: ex.sets ? ex.sets.split(/[x×]/)[0].trim() : '',
+                reps: ex.sets ? ex.sets.split(/[x×]/)[1]?.trim() : '',
+                rest: ex.rest || '',
+                notes: ''
+              }))
+            })),
+            tips: parsed.tips || []
+          };
+        } else {
+          // Dernier recours : afficher un message d'erreur utile
+          s = { name: program.params.goal, frequency: '', days: [], tips: [], error: true };
+        }
       }
 
       const nameParts = (s.name || 'Mon Programme').split(' ');
       const nameFirst = nameParts.slice(0, -1).join(' ') || nameParts[0];
       const nameLast = nameParts.length > 1 ? nameParts[nameParts.length - 1] : '';
 
+      // Cas erreur totale
+      if (s.error) {
+        document.getElementById('generator').innerHTML =
+          '<div class="alert-error" style="margin-top:1rem;">Le programme n'a pas pu être formaté. <button class="btn btn-sm" style="margin-left:8px;" onclick="resetGenerator()">Réessayer</button></div>'
+          + '<div class="prog-raw visible" style="margin-top:12px;">' + escH(program.content) + '</div>';
+        return;
+      }
+
       const daysHtml = (s.days || []).map((day, i) => {
         const exRows = (day.exercises || []).map(ex => {
-          const badge = (ex.sets && ex.reps) ? ex.sets + ' × ' + ex.reps : (ex.sets || '');
+          let badge = '';
+          if (ex.sets && ex.reps) badge = ex.sets + ' x ' + ex.reps;
+          else if (ex.sets) badge = ex.sets;
+          const exName = ex.name || '';
+          if (!exName || exName === '--') return '';
           return '<div class="ex-row">'
             + '<div class="ex-dot"></div>'
-            + '<div class="ex-name-text">' + escH(ex.name) + (ex.notes ? '<span class="ex-note">' + escH(ex.notes) + '</span>' : '') + '</div>'
+            + '<div class="ex-name-text">' + escH(exName) + (ex.notes ? '<div class="ex-note">' + escH(ex.notes) + '</div>' : '') + '</div>'
             + (badge ? '<span class="ex-tag accent">' + escH(badge) + '</span>' : '')
             + (ex.rest ? '<span class="ex-tag">' + escH(ex.rest) + '</span>' : '')
             + '</div>';
-        }).join('');
+        }).filter(Boolean).join('');
 
-        return '<div class="day-card open" id="day' + i + '">'
-          + '<div class="day-card-head" onclick="toggleDay('day' + i + '')">'
-          +   '<span class="day-num">' + escH(day.label || ('J' + (i+1))) + '</span>'
-          +   '<span class="day-title-text">' + escH(day.focus || day.label || '') + '</span>'
-          +   '<span class="day-toggle">▼</span>'
+        const dayNum = day.label || ('J' + (i+1));
+        const dayTitle = day.focus || day.title || '';
+
+        return '<div class="day-card ' + (i === 0 ? 'open' : '') + '" id="day' + i + '" data-ci="' + (i % 7) + '">'
+          + '<div class="day-card-head" onclick="toggleDay(\'day' + i + '\')">'
+          +   '<span class="day-num">' + escH(dayNum) + '</span>'
+          +   '<span class="day-title-text">' + escH(dayTitle) + '</span>'
+          +   '<span class="day-toggle">\u25bc</span>'
           + '</div>'
           + '<div class="day-body">' + exRows + '</div>'
           + '</div>';
       }).join('');
 
-      const tipsHtml = (s.tips && s.tips.length) ? (
+      const tipsArr = s.tips || [];
+      const tipsHtml = tipsArr.length ? (
         '<div class="tips-section">'
         + '<div class="tips-title">Conseils clés</div>'
-        + s.tips.map(t => '<div class="tip-row"><span class="tip-icon">→</span><span>' + escH(t) + '</span></div>').join('')
+        + tipsArr.map(t => '<div class="tip-row"><span class="tip-icon">→</span><span>' + escH(String(t)) + '</span></div>').join('')
         + '</div>'
       ) : '';
 
@@ -856,7 +1016,15 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans texte avant ni après, sans 
     }
 
     function toggleDay(id) {
-      document.getElementById(id).classList.toggle('open');
+      const clicked = document.getElementById(id);
+      const isOpen = clicked.classList.contains('open');
+      // Fermer tous les jours du même groupe
+      const prefix = id.replace(/\d+$/, '');
+      document.querySelectorAll('.day-card').forEach(card => {
+        if (card.id && card.id.startsWith(prefix)) card.classList.remove('open');
+      });
+      // Ouvrir le cliqué seulement s'il était fermé
+      if (!isOpen) clicked.classList.add('open');
     }
 
     function toggleRaw() {
@@ -1172,7 +1340,7 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans texte avant ni après, sans 
       if (!parsed.days.length) return `<div class="prog-raw visible">${escH(text)}</div>`;
       return `
         ${parsed.days.map((day, i) => `
-          <div class="day-card open" id="vday${i}">
+          <div class="day-card ${i === 0 ? 'open' : ''}" id="vday${i}" data-ci="${i % 7}">
             <div class="day-card-head" onclick="toggleDay('vday${i}')">
               <span class="day-num">J${i+1}</span>
               <span class="day-title-text">${escH(day.title)}</span>
